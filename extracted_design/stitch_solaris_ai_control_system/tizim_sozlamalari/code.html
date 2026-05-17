@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SOLAR_OS // SYSTEM_SETTINGS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a8c6ff",
+                        "surface-bright": "#faf7f2",
+                        "primary-fixed": "#ffcc00",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e2ddd4",
+                        "on-primary-fixed": "#1a1a1a",
+                        "secondary": "#e63b2e",
+                        "tertiary-container": "#d6e3ff",
+                        "on-background": "#1a1a1a",
+                        "on-tertiary-fixed-variant": "#1a1a1a",
+                        "inverse-on-surface": "#f5f0e8",
+                        "on-secondary-fixed": "#1a1a1a",
+                        "surface-variant": "#e8e3da",
+                        "surface": "#f5f0e8",
+                        "on-secondary-fixed-variant": "#1a1a1a",
+                        "surface-container-high": "#e8e3da",
+                        "primary-container": "#ffcc00",
+                        "surface-tint": "#1a1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#1a1a1a",
+                        "inverse-primary": "#f5f0e8",
+                        "secondary-fixed-dim": "#ffb3ab",
+                        "surface-container-low": "#f2ede5",
+                        "on-secondary": "#1a1a1a",
+                        "primary-fixed-dim": "#e6b800",
+                        "tertiary-fixed": "#d6e3ff",
+                        "tertiary": "#0055ff",
+                        "on-surface": "#1a1a1a",
+                        "on-primary-fixed-variant": "#1a1a1a",
+                        "on-secondary-container": "#1a1a1a",
+                        "primary": "#1a1a1a",
+                        "on-tertiary-fixed": "#1a1a1a",
+                        "surface-dim": "#d6d1c9",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#1a1a1a",
+                        "secondary-container": "#ffdad6",
+                        "on-tertiary-container": "#1a1a1a",
+                        "outline-variant": "#d0cbc3",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#cc0000",
+                        "secondary-fixed": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#1a1a1a",
+                        "on-surface-variant": "#4a4a4a",
+                        "background": "#f5f0e8",
+                        "surface-container": "#eee9e0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neo-shadow { box-shadow: 4px 4px 0px 0px rgba(26,26,26,1); }
+        .neo-shadow-sm { box-shadow: 2px 2px 0px 0px rgba(26,26,26,1); }
+        .neo-shadow-lg { box-shadow: 8px 8px 0px 0px rgba(26,26,26,1); }
+        .active-neo:active { transform: translate(2px, 2px); box-shadow: none; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #f5f0e8; border-left: 2px solid #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border: 2px solid #f5f0e8; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body">
+<!-- SideNavBar Component -->
+<aside class="fixed left-0 top-0 h-screen w-72 border-r-4 border-primary dark:border-primary-fixed flex flex-col justify-between py-6 bg-surface z-50">
+<div class="px-6">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-surface" style="font-variation-settings: 'FILL' 1;">solar_power</span>
+</div>
+<div>
+<h1 class="font-headline font-black text-3xl italic tracking-tighter text-primary">SOLAR_OS</h1>
+<p class="font-headline font-bold uppercase text-[10px] tracking-widest opacity-60">V2.4.0</p>
+</div>
+</div>
+<nav class="space-y-1">
+<!-- Nav Items derived from JSON -->
+<a class="flex items-center gap-3 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container transition-all duration-75" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-headline font-bold uppercase text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container transition-all duration-75" href="#">
+<span class="material-symbols-outlined">solar_power</span>
+<span class="font-headline font-bold uppercase text-sm">Solar Panels</span>
+</a>
+<a class="flex items-center gap-3 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container transition-all duration-75" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-headline font-bold uppercase text-sm">Analytics</span>
+</a>
+<a class="flex items-center gap-3 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container transition-all duration-75" href="#">
+<span class="material-symbols-outlined">battery_charging_full</span>
+<span class="font-headline font-bold uppercase text-sm">Battery</span>
+</a>
+<a class="flex items-center gap-3 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container transition-all duration-75" href="#">
+<span class="material-symbols-outlined">cloud</span>
+<span class="font-headline font-bold uppercase text-sm">Weather</span>
+</a>
+<a class="flex items-center gap-3 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container transition-all duration-75" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-headline font-bold uppercase text-sm">Maps</span>
+</a>
+<!-- Active Nav Item -->
+<a class="flex items-center gap-3 bg-primary-container border-2 border-primary text-primary m-2 p-3 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] translate-x-1 translate-y-1 shadow-none" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-headline font-bold uppercase text-sm">Settings</span>
+</a>
+</nav>
+</div>
+<div class="px-6">
+<button class="w-full py-4 bg-secondary text-surface border-2 border-primary font-headline font-black uppercase tracking-tighter active:translate-y-1 active:shadow-none neo-shadow transition-all">
+                Emergency Stop
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-72 min-h-screen">
+<!-- TopNavBar Component -->
+<header class="w-full h-16 border-b-4 border-primary flex justify-between items-center px-8 bg-surface sticky top-0 z-40">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 border-b-2 border-primary pb-1">
+<span class="material-symbols-outlined text-primary">search</span>
+<input class="bg-transparent border-none focus:ring-0 font-headline font-bold text-xs uppercase tracking-widest placeholder:text-on-surface-variant" placeholder="SEARCH_SYSTEM_PARAMS..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer active:translate-y-0.5 hover:text-tertiary transition-colors">language</span>
+<div class="relative">
+<span class="material-symbols-outlined text-primary cursor-pointer active:translate-y-0.5 hover:text-tertiary transition-colors">notifications</span>
+<div class="absolute -top-1 -right-1 w-2 h-2 bg-secondary border border-primary"></div>
+</div>
+</div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<span class="font-headline font-black text-sm uppercase tracking-tighter group-hover:text-tertiary transition-colors">Profile</span>
+<div class="w-10 h-10 border-2 border-primary bg-primary-container overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ-mbMLoZbVX6hKW7ziEJqBXfXytctCpb6a9_HJUaxF_CY1uD3mDwWKVLhGiUPYByETMqQP1P5Cd2qFwmkCOtfZRVf8iAEh27OxS6UWVstRT6s4xK35QOSPsqwzsH2x-9wBIjo0lcFlbwjT8yVw8eMjLRsTTMwgRXS8xhPYcmqkZdrn1vodaMZsAbvp-cs1rLk9OSJPtfZUQF4GDdqHV4iXKJTKwdDxJxv4eIdqxyyY9vAQlK9gsVsROM1oLPk55bDixKh_eg7qUQ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Settings Content Grid -->
+<div class="p-10 max-w-7xl mx-auto space-y-12">
+<!-- Page Header -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-4 border-primary pb-8">
+<div>
+<h2 class="font-headline font-black text-8xl uppercase tracking-tighter leading-none mb-4">Settings</h2>
+<p class="font-body font-medium text-lg max-w-2xl opacity-80">Configure core system protocols, visual interfaces, and security authorization modules for the Solar_OS environment.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-6 py-2 border-2 border-primary font-headline font-bold uppercase active:translate-x-1 active:translate-y-1 neo-shadow-sm active:shadow-none bg-surface transition-all">Revert</button>
+<button class="px-6 py-2 border-2 border-primary bg-primary font-headline font-bold uppercase text-surface active:translate-x-1 active:translate-y-1 neo-shadow-sm active:shadow-none transition-all">Apply All</button>
+</div>
+</section>
+<!-- Settings Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Profile Management -->
+<div class="md:col-span-8 bg-surface border-4 border-primary p-8 neo-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 font-headline font-black text-6xl opacity-5 pointer-events-none">USER_01</div>
+<h3 class="font-headline font-black text-3xl uppercase tracking-tighter mb-8 border-b-2 border-primary inline-block">Profile Management</h3>
+<div class="flex flex-col sm:flex-row gap-8 items-start">
+<div class="relative group">
+<div class="w-40 h-40 border-4 border-primary bg-primary-container flex items-center justify-center neo-shadow">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a technologist with a serious expression, set against a stark industrial background. The lighting is high-contrast Bauhaus style, focusing on sharp lines and geometric shadows. The image uses a minimalist color palette of deep blacks, off-whites, and a hint of industrial red, perfectly matching a neo-brutalist UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-c5fZa0ybTvLrU6XzYoHgzyswVlkzqBK9Q-g-3e6BOdV4KpjJOIs2RpQC1UivwJF7AO6PhE6e5ZL2Kiw3tKA7cfoTX3M6qtQqnYhXYdMygaD7liIBGtPi10eE107Sk7Adui3SenlfiWVcXa190w79P0_p9FYFLogspQH_wNJAg0oTn06H7or67oVJgmRa_M_ECyiVJQEXNwoa-2b_9yK4ufvp6rAaFjQHjZe8lP5gmhrylrYLnB2vGhWfJ0mAL7OuLnzTQEccAMc"/>
+</div>
+<button class="absolute -bottom-2 -right-2 bg-tertiary text-surface border-2 border-primary p-2 neo-shadow-sm active:translate-y-1 active:shadow-none transition-all">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+<div class="flex-1 w-full space-y-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-headline font-bold uppercase text-xs opacity-60">System Identity</label>
+<input class="w-full bg-surface-container-low border-b-2 border-primary p-2 font-headline font-bold focus:bg-white focus:outline-none transition-colors" type="text" value="ALEX_DANVERS_PRO"/>
+</div>
+<div class="space-y-1">
+<label class="font-headline font-bold uppercase text-xs opacity-60">Auth Level</label>
+<div class="p-2 border-b-2 border-primary font-headline font-black text-tertiary">LEVEL_05 (ROOT)</div>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-headline font-bold uppercase text-xs opacity-60">Recovery Protocol (Email)</label>
+<input class="w-full bg-surface-container-low border-b-2 border-primary p-2 font-headline font-bold focus:bg-white focus:outline-none transition-colors" type="email" value="alex.d@solar-os.internal"/>
+</div>
+</div>
+</div>
+</div>
+<!-- System Info -->
+<div class="md:col-span-4 bg-primary text-surface border-4 border-primary p-8 neo-shadow flex flex-col justify-between">
+<div>
+<h3 class="font-headline font-black text-3xl uppercase tracking-tighter mb-6 border-b-2 border-surface-container-highest inline-block">System Info</h3>
+<div class="space-y-4 font-headline text-sm font-bold">
+<div class="flex justify-between border-b border-surface/20 pb-2">
+<span class="opacity-60">KERNEL_VERSION</span>
+<span>SOLAR_OS_64-BIT</span>
+</div>
+<div class="flex justify-between border-b border-surface/20 pb-2">
+<span class="opacity-60">UPTIME</span>
+<span>14D:02H:44M</span>
+</div>
+<div class="flex justify-between border-b border-surface/20 pb-2">
+<span class="opacity-60">LAST_REBOOT</span>
+<span>2023.10.24_04:00</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t-2 border-surface/20">
+<div class="text-6xl font-black italic tracking-tighter opacity-20">2.4.0</div>
+<button class="w-full mt-4 py-2 border-2 border-surface font-headline font-black uppercase text-xs hover:bg-surface hover:text-primary transition-colors">Check Updates</button>
+</div>
+</div>
+<!-- Appearance Controls -->
+<div class="md:col-span-6 bg-surface border-4 border-primary p-8 neo-shadow">
+<h3 class="font-headline font-black text-3xl uppercase tracking-tighter mb-8 border-b-2 border-primary inline-block">Interface Styles</h3>
+<div class="space-y-8">
+<!-- Theme Toggle -->
+<div class="space-y-3">
+<label class="font-headline font-black uppercase text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">palette</span> 
+                                Theme Environment
+                            </label>
+<div class="grid grid-cols-3 gap-3">
+<button class="py-4 border-2 border-primary bg-surface-container-highest font-headline font-bold uppercase text-xs active-neo neo-shadow-sm transition-all border-b-8">Light</button>
+<button class="py-4 border-2 border-primary bg-primary text-surface font-headline font-bold uppercase text-xs active-neo neo-shadow-sm transition-all border-b-2">Dark</button>
+<button class="py-4 border-2 border-primary bg-primary-container text-primary font-headline font-bold uppercase text-xs active-neo neo-shadow-sm transition-all border-b-2 border-r-2 ring-2 ring-tertiary ring-offset-2">Neon</button>
+</div>
+</div>
+<!-- Scaling & Fonts -->
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-3">
+<label class="font-headline font-black uppercase text-sm">UI Scaling</label>
+<input class="w-full h-3 bg-primary-container border-2 border-primary appearance-none cursor-pointer accent-primary" max="150" min="80" type="range" value="100"/>
+<div class="flex justify-between font-headline font-bold text-[10px]">
+<span>80%</span>
+<span>100%</span>
+<span>150%</span>
+</div>
+</div>
+<div class="space-y-3">
+<label class="font-headline font-black uppercase text-sm">Font Size</label>
+<div class="flex border-2 border-primary">
+<button class="flex-1 py-1 border-r-2 border-primary hover:bg-primary-container font-headline font-bold">A</button>
+<button class="flex-1 py-1 border-r-2 border-primary bg-primary text-surface font-headline font-bold">A</button>
+<button class="flex-1 py-1 font-headline font-black text-lg">A</button>
+</div>
+</div>
+</div>
+<!-- Animation Toggles -->
+<div class="flex items-center justify-between p-4 border-2 border-primary bg-surface-container-low">
+<div>
+<h4 class="font-headline font-bold uppercase">Fluid Animations</h4>
+<p class="text-[10px] uppercase opacity-60">Enable motion interpolation</p>
+</div>
+<button class="w-14 h-8 border-2 border-primary relative transition-colors bg-primary">
+<div class="absolute right-1 top-1 bottom-1 w-5 bg-surface border-2 border-primary"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Localization & Comm -->
+<div class="md:col-span-6 bg-surface-container-high border-4 border-primary p-8 neo-shadow">
+<h3 class="font-headline font-black text-3xl uppercase tracking-tighter mb-8 border-b-2 border-primary inline-block">Localization</h3>
+<div class="space-y-8">
+<!-- Language Selection -->
+<div class="space-y-3">
+<label class="font-headline font-black uppercase text-sm">System Language</label>
+<div class="space-y-2">
+<label class="flex items-center justify-between p-4 border-2 border-primary bg-white cursor-pointer hover:bg-primary-container transition-colors">
+<span class="font-headline font-bold uppercase">English (Global)</span>
+<input checked="" class="w-5 h-5 border-4 border-primary text-tertiary focus:ring-0" name="lang" type="radio"/>
+</label>
+<label class="flex items-center justify-between p-4 border-2 border-primary bg-white/50 cursor-pointer hover:bg-primary-container transition-colors">
+<span class="font-headline font-bold uppercase">Uzbek (Lotin)</span>
+<input class="w-5 h-5 border-4 border-primary text-tertiary focus:ring-0" name="lang" type="radio"/>
+</label>
+<label class="flex items-center justify-between p-4 border-2 border-primary bg-white/50 cursor-pointer hover:bg-primary-container transition-colors">
+<span class="font-headline font-bold uppercase">Russian (Cyrillic)</span>
+<input class="w-5 h-5 border-4 border-primary text-tertiary focus:ring-0" name="lang" type="radio"/>
+</label>
+</div>
+</div>
+<!-- Notification Preferences -->
+<div class="space-y-4 pt-4 border-t-2 border-primary">
+<h4 class="font-headline font-black uppercase text-sm">Notification Channels</h4>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center gap-2 p-3 border-2 border-primary bg-white font-headline font-bold text-xs uppercase active-neo neo-shadow-sm">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">mail</span>
+                                    Email
+                                </button>
+<button class="flex items-center gap-2 p-3 border-2 border-primary bg-primary text-surface font-headline font-bold text-xs uppercase active-neo neo-shadow-sm">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">sms</span>
+                                    SMS_Push
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- API & Security -->
+<div class="md:col-span-12 bg-surface border-4 border-primary p-8 neo-shadow">
+<div class="flex items-center justify-between mb-8 border-b-2 border-primary pb-2">
+<h3 class="font-headline font-black text-3xl uppercase tracking-tighter">API Keys &amp; External Access</h3>
+<button class="bg-tertiary text-surface px-4 py-2 border-2 border-primary font-headline font-bold uppercase text-xs neo-shadow-sm active-neo">Generate New Key</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b-4 border-primary">
+<th class="py-4 font-headline font-black uppercase text-sm">Label</th>
+<th class="py-4 font-headline font-black uppercase text-sm">Token Identifier</th>
+<th class="py-4 font-headline font-black uppercase text-sm">Perms</th>
+<th class="py-4 font-headline font-black uppercase text-sm text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-2 divide-primary">
+<tr>
+<td class="py-4 font-headline font-bold">SOLAR_ANALYTICS_V1</td>
+<td class="py-4 font-mono text-xs text-on-surface-variant">sk_live_••••••••••••••••••••4f2x</td>
+<td class="py-4"><span class="px-2 py-0.5 bg-primary-container border border-primary text-[10px] font-black uppercase">Read_Write</span></td>
+<td class="py-4 text-right">
+<button class="text-tertiary hover:underline font-headline font-black text-xs uppercase mr-4">Reveal</button>
+<button class="text-secondary hover:underline font-headline font-black text-xs uppercase">Revoke</button>
+</td>
+</tr>
+<tr>
+<td class="py-4 font-headline font-bold">WEATHER_DATA_PULL</td>
+<td class="py-4 font-mono text-xs text-on-surface-variant">sk_live_••••••••••••••••••••9z0k</td>
+<td class="py-4"><span class="px-2 py-0.5 bg-surface-container-highest border border-primary text-[10px] font-black uppercase">Read_Only</span></td>
+<td class="py-4 text-right">
+<button class="text-tertiary hover:underline font-headline font-black text-xs uppercase mr-4">Reveal</button>
+<button class="text-secondary hover:underline font-headline font-black text-xs uppercase">Revoke</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Destructive Zone -->
+<section class="mt-20 border-4 border-secondary p-8 bg-secondary-container/30 relative">
+<div class="absolute -top-4 left-8 bg-secondary text-surface px-4 py-1 font-headline font-black uppercase text-xs border-2 border-primary">Danger Zone</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div>
+<h4 class="font-headline font-black text-2xl uppercase tracking-tighter text-secondary">Hard Reset System</h4>
+<p class="font-body text-sm font-medium opacity-80 uppercase">Warning: This will purge all user configurations and reset the kernel to factory defaults.</p>
+</div>
+<button class="px-10 py-4 bg-secondary text-surface border-4 border-primary font-headline font-black uppercase tracking-widest neo-shadow hover:bg-red-700 transition-colors active:translate-x-1 active:translate-y-1 active:shadow-none">Purge Data</button>
+</div>
+</section>
+</div>
+<!-- Subtle Atmospheric Background Detail -->
+<div class="fixed bottom-10 right-10 pointer-events-none opacity-5">
+<svg fill="none" height="400" viewbox="0 0 400 400" width="400" xmlns="http://www.w3.org/2000/svg">
+<circle cx="200" cy="200" r="198" stroke="currentColor" stroke-dasharray="20 20" stroke-width="4"></circle>
+<rect height="300" stroke="currentColor" stroke-width="2" width="300" x="50" y="50"></rect>
+<line stroke="currentColor" stroke-width="2" x1="0" x2="400" y1="200" y2="200"></line>
+<line stroke="currentColor" stroke-width="2" x1="200" x2="200" y1="0" y2="400"></line>
+</svg>
+</div>
+</main>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('.active-neo').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.remove('neo-shadow-sm', 'neo-shadow');
+            });
+            button.addEventListener('mouseup', () => {
+                if (button.innerText.toLowerCase() === 'light' || button.innerText.toLowerCase() === 'dark' || button.innerText.toLowerCase() === 'neon') {
+                    // Logic for active state persistence if needed
+                } else {
+                    button.classList.add('neo-shadow-sm');
+                }
+            });
+        });
+
+        // Theme simulation
+        const themeBtns = document.querySelectorAll('button:is(:contains("Light"), :contains("Dark"), :contains("Neon"))');
+        // Note: :contains isn't standard CSS, selecting by index or specific classes is better in real JS.
+        // For this demo, let's just make the switches interactive.
+        const appearanceBtns = document.querySelectorAll('.grid-cols-3 button');
+        appearanceBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                appearanceBtns.forEach(b => {
+                    b.classList.remove('ring-2', 'ring-tertiary', 'ring-offset-2', 'border-b-8');
+                    b.classList.add('border-b-2');
+                });
+                btn.classList.add('ring-2', 'ring-tertiary', 'ring-offset-2', 'border-b-8');
+                btn.classList.remove('border-b-2');
+            });
+        });
+    </script>
+</body></html>

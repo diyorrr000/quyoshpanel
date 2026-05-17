@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SOLAR_OS | Panel Monitoring</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a8c6ff",
+                        "surface-bright": "#faf7f2",
+                        "primary-fixed": "#ffcc00",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e2ddd4",
+                        "on-primary-fixed": "#1a1a1a",
+                        "secondary": "#e63b2e",
+                        "tertiary-container": "#d6e3ff",
+                        "on-background": "#1a1a1a",
+                        "on-tertiary-fixed-variant": "#1a1a1a",
+                        "inverse-on-surface": "#f5f0e8",
+                        "on-secondary-fixed": "#1a1a1a",
+                        "surface-variant": "#e8e3da",
+                        "surface": "#f5f0e8",
+                        "on-secondary-fixed-variant": "#1a1a1a",
+                        "surface-container-high": "#e8e3da",
+                        "primary-container": "#ffcc00",
+                        "surface-tint": "#1a1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#1a1a1a",
+                        "inverse-primary": "#f5f0e8",
+                        "secondary-fixed-dim": "#ffb3ab",
+                        "surface-container-low": "#f2ede5",
+                        "on-secondary": "#1a1a1a",
+                        "primary-fixed-dim": "#e6b800",
+                        "tertiary-fixed": "#d6e3ff",
+                        "tertiary": "#0055ff",
+                        "on-surface": "#1a1a1a",
+                        "on-primary-fixed-variant": "#1a1a1a",
+                        "on-secondary-container": "#1a1a1a",
+                        "primary": "#1a1a1a",
+                        "on-tertiary-fixed": "#1a1a1a",
+                        "surface-dim": "#d6d1c9",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#1a1a1a",
+                        "secondary-container": "#ffdad6",
+                        "on-tertiary-container": "#1a1a1a",
+                        "outline-variant": "#d0cbc3",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#cc0000",
+                        "secondary-fixed": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#1a1a1a",
+                        "on-surface-variant": "#4a4a4a",
+                        "background": "#f5f0e8",
+                        "surface-container": "#eee9e0",
+                        "neon-active": "#39ff14"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .neo-shadow {
+            box-shadow: 6px 6px 0px 0px rgba(26,26,26,1);
+        }
+        .neo-shadow-sm {
+            box-shadow: 3px 3px 0px 0px rgba(26,26,26,1);
+        }
+        .neo-shadow-active {
+            box-shadow: 1px 1px 0px 0px rgba(26,26,26,1);
+            transform: translate(2px, 2px);
+        }
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #f5f0e8; border-left: 2px solid #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border: 2px solid #f5f0e8; }
+        .grid-bg {
+            background-image: linear-gradient(#d0cbc3 1px, transparent 1px), linear-gradient(90deg, #d0cbc3 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen">
+<!-- Sidebar Navigation (From JSON) -->
+<nav class="fixed left-0 top-0 h-full w-72 bg-surface border-r-4 border-primary flex flex-col justify-between py-6 z-50">
+<div>
+<div class="px-6 mb-12">
+<h1 class="font-headline font-black text-3xl italic tracking-tighter text-primary">SOLAR_OS</h1>
+<p class="font-headline font-bold text-xs uppercase opacity-60">V2.4.0</p>
+</div>
+<div class="flex flex-col space-y-1">
+<!-- Nav Item: Dashboard -->
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Nav Item: Solar Panels (ACTIVE) -->
+<a class="bg-primary-container border-2 border-primary text-primary m-2 p-3 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] flex items-center gap-3 font-headline font-bold uppercase active:translate-x-1 active:translate-y-1 active:shadow-none" href="#">
+<span class="material-symbols-outlined">solar_power</span>
+<span>Solar Panels</span>
+</a>
+<!-- Other Items -->
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Analytics</span>
+</a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">battery_charging_full</span>
+<span>Battery</span>
+</a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">cloud</span>
+<span>Weather</span>
+</a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">map</span>
+<span>Maps</span>
+</a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</div>
+<div class="px-4">
+<button class="w-full bg-secondary text-surface font-headline font-black uppercase py-4 border-2 border-primary neo-shadow active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                Emergency Stop
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-72 min-h-screen">
+<!-- Top Nav Bar (From JSON) -->
+<header class="w-full h-16 border-b-4 border-primary bg-surface flex justify-between items-center px-8 sticky top-0 z-40">
+<div class="flex items-center gap-6">
+<div class="relative group">
+<input class="bg-surface border-2 border-primary focus:ring-0 focus:border-tertiary px-4 py-1 font-headline font-bold text-sm w-64 placeholder:text-primary/40" placeholder="SEARCH_NODE..." type="text"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 opacity-50">search</span>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-primary hover:text-surface p-1 transition-colors">language</button>
+<button class="material-symbols-outlined text-primary hover:bg-primary hover:text-surface p-1 transition-colors">notifications</button>
+</div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<span class="font-headline font-bold text-label-sm uppercase tracking-wider text-primary">Profile</span>
+<div class="w-8 h-8 border-2 border-primary overflow-hidden">
+<img alt="User profile" class="grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1792lSQIXroyS-HvKsHx7fMDaEci4r7p35iicMt3tAjndNcGbbRht468uVFn9WBnQ9piPe78cFC7nO2Zpc0uF3JocIqggqoxKMUr2GFoum5nD5YsDqr_BL8eZPqZCuunCBx_Z-Wc0haJxBp60rv3UNbgmb08KBXA6n3ssh284-TMVuu6Nn3NRagQtQJPNRjRhc4IpHONqxwtbCnyzvyt0vC7qDOQToXn-ne3HV0EidqR7DDLFW08d_DPevQ1wMprMqB65Q7-h3qY"/>
+</div>
+</div>
+</div>
+</header>
+<section class="p-8 grid-bg">
+<!-- Header Summary Section -->
+<div class="mb-12">
+<h2 class="font-display font-black text-7xl uppercase tracking-tighter mb-4 text-primary leading-none">
+                    Array_Status<span class="text-tertiary">.exe</span>
+</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface border-4 border-primary p-6 neo-shadow">
+<p class="font-headline font-bold text-xs uppercase opacity-60 mb-2">Total System Health</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display font-black text-5xl">98.4</span>
+<span class="font-headline font-extrabold text-xl uppercase">%</span>
+</div>
+<div class="h-4 border-2 border-primary mt-4 bg-surface-container-highest relative">
+<div class="absolute inset-0 bg-neon-active w-[98.4%]"></div>
+</div>
+</div>
+<div class="bg-primary-container border-4 border-primary p-6 neo-shadow">
+<p class="font-headline font-bold text-xs uppercase opacity-60 mb-2">Live Grid Output</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display font-black text-5xl">14.2</span>
+<span class="font-headline font-extrabold text-xl uppercase">MW</span>
+</div>
+<p class="text-xs font-bold mt-4 uppercase flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm">trending_up</span> +0.8MW from 1h ago
+                        </p>
+</div>
+<div class="bg-surface border-4 border-primary p-6 neo-shadow">
+<p class="font-headline font-bold text-xs uppercase opacity-60 mb-2">Ambient Temp</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display font-black text-5xl">28</span>
+<span class="font-headline font-extrabold text-xl uppercase">°C</span>
+</div>
+<p class="text-xs font-bold mt-4 uppercase flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm">warning</span> Near peak cooling
+                        </p>
+</div>
+<div class="bg-tertiary border-4 border-primary p-6 neo-shadow text-surface">
+<p class="font-headline font-bold text-xs uppercase opacity-80 mb-2">Active Panels</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display font-black text-5xl">48</span>
+<span class="font-headline font-extrabold text-xl uppercase">/ 48</span>
+</div>
+<p class="text-xs font-bold mt-4 uppercase">All Systems Nominal</p>
+</div>
+</div>
+</div>
+<!-- Panel Grid & Analytics -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Main Grid of Panels -->
+<div class="lg:col-span-8">
+<div class="flex justify-between items-end mb-6">
+<h3 class="font-display font-black text-4xl uppercase tracking-tighter">Panel_Nodes [101-148]</h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 border-2 border-primary bg-primary text-surface font-headline font-bold uppercase text-xs">Efficiency</button>
+<button class="px-4 py-2 border-2 border-primary hover:bg-surface-container transition-colors font-headline font-bold uppercase text-xs">Voltage</button>
+<button class="px-4 py-2 border-2 border-primary hover:bg-surface-container transition-colors font-headline font-bold uppercase text-xs">Thermal</button>
+</div>
+</div>
+<div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 bg-primary p-4 border-4 border-primary">
+<!-- Generating 48 Panels Dynamically via JS for brevity but here's the HTML structure -->
+<div class="contents" id="panel-grid">
+<!-- JS will inject panels here -->
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Detailed Metric & Heatmap -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- Heatmap Visual -->
+<div class="bg-surface border-4 border-primary p-6 neo-shadow">
+<h3 class="font-headline font-black text-xl uppercase mb-6 flex justify-between">
+                            Thermal_Map
+                            <span class="material-symbols-outlined">filter_center_focus</span>
+</h3>
+<div class="aspect-square w-full bg-surface-container relative border-2 border-primary overflow-hidden">
+<div class="absolute inset-0 opacity-80 mix-blend-multiply">
+<img class="w-full h-full object-cover grayscale brightness-75" data-alt="A thermal imaging map of a solar array showing a grid pattern of rectangular solar panels with varying heat intensities from cool blues and purples to hot oranges and yellows. The aesthetic is high-contrast and scientific with sharp digital artifacts and geometric precision, matching the Bauhaus neo-brutalist style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTcaha1l2OWFZ_AE2VpRmXaTCBn3Jwgw4JVWfyOJRjNAY2FDNlX8LGbCGd9Cf2EHmjABX3nvbEO2IZIakJdVTpOKmrlbh9K_lXs9Kn4V_nQgdRtAAbOvc4oaT3hQi-QKzGem1CPbKoLi_VbVPsydi9zS5WZn5gFuraHw1TZT5Cq31VOD3gtgTYkn9PaWteivWX_3bxij35jsW4RBJjjsiyMvbGQTtSAh0IRRuH4E7gOiXgOXI1QdOi9LAk4khcTSZBI_agQnJ3zEY"/>
+</div>
+<div class="absolute inset-0 flex flex-col pointer-events-none">
+<div class="flex-1 border-b border-primary/20"></div>
+<div class="flex-1 border-b border-primary/20"></div>
+<div class="flex-1 border-b border-primary/20"></div>
+<div class="flex-1"></div>
+</div>
+<div class="absolute top-4 right-4 bg-secondary text-surface text-[10px] font-bold px-2 py-1 uppercase animate-pulse">Hotspot Detected</div>
+</div>
+<div class="mt-4 flex justify-between text-[10px] font-black uppercase opacity-60">
+<span>15°C [Cool]</span>
+<span>45°C [Max]</span>
+</div>
+<div class="w-full h-2 mt-1 bg-gradient-to-r from-tertiary via-neon-active to-secondary border border-primary"></div>
+</div>
+<!-- Individual Node Detailed View -->
+<div class="bg-surface border-4 border-primary p-6 neo-shadow flex-grow">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline font-black text-3xl uppercase leading-none">Node_108</h3>
+<p class="text-xs font-bold uppercase opacity-60 mt-1">Primary Array Section B</p>
+</div>
+<span class="bg-neon-active text-primary px-3 py-1 font-headline font-black text-xs uppercase border-2 border-primary">Status: Op</span>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-xs font-black uppercase mb-1">
+<span>Efficiency</span>
+<span>94.2%</span>
+</div>
+<div class="w-full h-3 border-2 border-primary bg-surface-container">
+<div class="h-full bg-tertiary w-[94.2%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-black uppercase mb-1">
+<span>Voltage Stability</span>
+<span>99.1%</span>
+</div>
+<div class="w-full h-3 border-2 border-primary bg-surface-container">
+<div class="h-full bg-neon-active w-[99.1%]"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-8">
+<div class="border-2 border-primary p-3">
+<p class="text-[10px] font-bold uppercase opacity-60">Cur. Temp</p>
+<p class="font-display font-black text-2xl">32.4°</p>
+</div>
+<div class="border-2 border-primary p-3">
+<p class="text-[10px] font-bold uppercase opacity-60">Output</p>
+<p class="font-display font-black text-2xl">290W</p>
+</div>
+</div>
+<button class="w-full mt-4 py-4 border-2 border-primary bg-primary text-surface font-headline font-black uppercase text-sm neo-shadow-sm hover:translate-y-[-2px] hover:shadow-md transition-all">
+                                Force Maintenance Check
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Generate Panel Grid
+        const gridContainer = document.getElementById('panel-grid');
+        const totalPanels = 48;
+        
+        for (let i = 1; i <= totalPanels; i++) {
+            const panelId = 100 + i;
+            const efficiency = (Math.random() * (98 - 85) + 85).toFixed(1);
+            const isCritical = i === 8 || i === 24; // Artificial "attention" needed panels
+            
+            const panel = document.createElement('div');
+            panel.className = `aspect-square border-2 border-primary p-2 flex flex-col justify-between cursor-pointer transition-all hover:scale-105 hover:z-10 group relative ${isCritical ? 'bg-secondary' : 'bg-surface'}`;
+            
+            // Randomly assign heat color for visualization
+            const heatColors = ['bg-tertiary', 'bg-neon-active', 'bg-primary-container'];
+            const randomColor = heatColors[Math.floor(Math.random() * heatColors.length)];
+
+            panel.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <span class="text-[8px] font-black leading-none ${isCritical ? 'text-surface' : 'text-primary'}">#${panelId}</span>
+                    <div class="w-1.5 h-1.5 rounded-full ${isCritical ? 'bg-surface' : 'bg-neon-active'}"></div>
+                </div>
+                <div class="flex-grow flex items-center justify-center">
+                    <div class="w-4/5 h-1 ${isCritical ? 'bg-surface/30' : 'bg-primary/10'} relative overflow-hidden">
+                        <div class="absolute inset-0 ${isCritical ? 'bg-surface' : randomColor}" style="width: ${efficiency}%"></div>
+                    </div>
+                </div>
+                <div class="text-[8px] font-black uppercase text-center ${isCritical ? 'text-surface' : 'text-primary'}">${efficiency}%</div>
+                
+                <!-- Tooltip -->
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-24 bg-primary text-surface p-2 text-[10px] font-bold pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50">
+                    ID: ${panelId}<br>
+                    EFF: ${efficiency}%<br>
+                    VOLT: 24.2V
+                </div>
+            `;
+            
+            gridContainer.appendChild(panel);
+        }
+
+        // Simple reactive effect for interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('neo-shadow-active'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('neo-shadow-active'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('neo-shadow-active'));
+        });
+    </script>
+</body></html>

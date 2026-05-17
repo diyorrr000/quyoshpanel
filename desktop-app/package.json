@@ -1,0 +1,22 @@
+{
+  "name": "solar-control-system",
+  "version": "1.0.0",
+  "description": "Solar Control System Desktop App",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder build --win --x64"
+  },
+  "build": {
+    "appId": "com.solaris.control",
+    "productName": "SOLAR_OS Control",
+    "win": {
+      "target": "portable",
+      "artifactName": "Solar_Control_System.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  }
+}

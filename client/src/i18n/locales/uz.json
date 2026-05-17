@@ -1,0 +1,33 @@
+{
+    "sidebar": {
+        "dashboard": "Bosh Sahifa",
+        "solar_panels": "Quyosh Panellari",
+        "devices": "Qurilmalar",
+        "analytics": "Energiya Analitikasi",
+        "battery": "Batareya Boshqaruvi",
+        "weather": "Ob-havo Monitoringi",
+        "reports": "Hisobotlar",
+        "notifications": "Bildirishnomalar",
+        "security": "Xavfsizlik",
+        "automation": "Avtomatlashtirish",
+        "maps": "Interaktiv Xaritalar",
+        "users": "Foydalanuvchilar",
+        "settings": "Tizim Sozlamalari",
+        "support": "Yordam",
+        "emergency_stop": "FAVQULODDA TO'XTATISH"
+    },
+    "topbar": {
+        "search": "Qidiruv (Node)...",
+        "profile": "Profil"
+    },
+    "common": {
+        "efficiency": "Samaradorlik",
+        "voltage": "Kuchlanish",
+        "temperature": "Harorat",
+        "status": "Holati",
+        "online": "Onlayn",
+        "offline": "Oflayn",
+        "active": "Faol",
+        "maintenance": "Texnik xizmat"
+    }
+}

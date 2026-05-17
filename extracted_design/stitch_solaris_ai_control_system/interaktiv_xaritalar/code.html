@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SOLAR_OS | Interactive Map</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a8c6ff",
+                        "surface-bright": "#faf7f2",
+                        "primary-fixed": "#ffcc00",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e2ddd4",
+                        "on-primary-fixed": "#1a1a1a",
+                        "secondary": "#e63b2e",
+                        "tertiary-container": "#d6e3ff",
+                        "on-background": "#1a1a1a",
+                        "on-tertiary-fixed-variant": "#1a1a1a",
+                        "inverse-on-surface": "#f5f0e8",
+                        "on-secondary-fixed": "#1a1a1a",
+                        "surface-variant": "#e8e3da",
+                        "surface": "#f5f0e8",
+                        "on-secondary-fixed-variant": "#1a1a1a",
+                        "surface-container-high": "#e8e3da",
+                        "primary-container": "#ffcc00",
+                        "surface-tint": "#1a1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#1a1a1a",
+                        "inverse-primary": "#f5f0e8",
+                        "secondary-fixed-dim": "#ffb3ab",
+                        "surface-container-low": "#f2ede5",
+                        "on-secondary": "#1a1a1a",
+                        "primary-fixed-dim": "#e6b800",
+                        "tertiary-fixed": "#d6e3ff",
+                        "tertiary": "#0055ff",
+                        "on-surface": "#1a1a1a",
+                        "on-primary-fixed-variant": "#1a1a1a",
+                        "on-secondary-container": "#1a1a1a",
+                        "primary": "#1a1a1a",
+                        "on-tertiary-fixed": "#1a1a1a",
+                        "surface-dim": "#d6d1c9",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#1a1a1a",
+                        "secondary-container": "#ffdad6",
+                        "on-tertiary-container": "#1a1a1a",
+                        "outline-variant": "#d0cbc3",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#cc0000",
+                        "secondary-fixed": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#1a1a1a",
+                        "on-surface-variant": "#4a4a4a",
+                        "background": "#f5f0e8",
+                        "surface-container": "#eee9e0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .map-marker-hover:hover .marker-stats {
+            display: block;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f5f0e8;
+            border-left: 2px solid #1a1a1a;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1a1a1a;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(.33); opacity: 1; }
+            80%, 100% { opacity: 0; }
+        }
+        .pulse-effect::before {
+            content: '';
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            left: -100%;
+            top: -100%;
+            border-radius: 50%;
+            background-color: #ffcc00;
+            animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body overflow-hidden">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="fixed left-0 top-0 h-screen w-72 border-r-4 border-primary bg-surface flex flex-col justify-between py-6 z-50">
+<div class="flex flex-col">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-12 h-12 bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed text-3xl" style="font-variation-settings: 'FILL' 1;">solar_power</span>
+</div>
+<div>
+<h1 class="font-headline font-black text-3xl italic tracking-tighter text-primary">SOLAR_OS</h1>
+<p class="font-headline font-bold uppercase text-xs tracking-widest opacity-60">V2.4.0</p>
+</div>
+</div>
+<nav class="flex flex-col space-y-1">
+<a class="flex items-center gap-4 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container hover:border-primary transition-all duration-75 active:translate-x-1 active:translate-y-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-headline font-bold uppercase text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container hover:border-primary transition-all duration-75 active:translate-x-1 active:translate-y-1" href="#">
+<span class="material-symbols-outlined">solar_power</span>
+<span class="font-headline font-bold uppercase text-sm">Solar Panels</span>
+</a>
+<a class="flex items-center gap-4 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container hover:border-primary transition-all duration-75 active:translate-x-1 active:translate-y-1" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-headline font-bold uppercase text-sm">Analytics</span>
+</a>
+<a class="flex items-center gap-4 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container hover:border-primary transition-all duration-75 active:translate-x-1 active:translate-y-1" href="#">
+<span class="material-symbols-outlined">battery_charging_full</span>
+<span class="font-headline font-bold uppercase text-sm">Battery</span>
+</a>
+<a class="flex items-center gap-4 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container hover:border-primary transition-all duration-75 active:translate-x-1 active:translate-y-1" href="#">
+<span class="material-symbols-outlined">cloud</span>
+<span class="font-headline font-bold uppercase text-sm">Weather</span>
+</a>
+<!-- Active Tab: Maps -->
+<a class="flex items-center gap-4 bg-primary-container border-2 border-primary text-primary m-2 p-3 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all duration-75" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-headline font-bold uppercase text-sm">Maps</span>
+</a>
+<a class="flex items-center gap-4 text-primary m-2 p-3 border-2 border-transparent hover:bg-tertiary-container hover:border-primary transition-all duration-75 active:translate-x-1 active:translate-y-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-headline font-bold uppercase text-sm">Settings</span>
+</a>
+</nav>
+</div>
+<div class="px-4">
+<button class="w-full bg-secondary text-on-primary font-headline font-black uppercase py-4 border-2 border-primary shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                Emergency Stop
+            </button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-72 relative h-screen w-[calc(100%-18rem)] overflow-hidden">
+<!-- Interactive Map Background -->
+<div class="absolute inset-0 z-0 bg-surface-variant">
+<img class="w-full h-full object-cover opacity-80 grayscale-[0.2] contrast-[1.1]" data-alt="A highly detailed topographical map of a vast sun-drenched landscape with golden hills and scattered industrial structures. The lighting is harsh and bright, consistent with a high-key midday sun. The visual style is a mix of satellite photography and neo-brutalist data overlays, with bold black borders outlining geographic features. The mood is clinical, modern, and expansive." data-location="California" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzaVnzkLlQF02Q41khwb1O_oPzhuiPlwIhB9aeWnfAKv4pj7TVO__DpmT4PBZ-0B6c17t6Dd_-g0V36kZA8r86PNc1b-XFJJ6NoxuPRJm-QeAW4bDTXIyaYceAUJ07q1la2l_U2SU9XJ8DA5t-mR3J4dK5LZdhnJeHiO28l_LCoPNBS-lmCsJjSsWZN5DVAAOu2o0Ary0_qNqJEe6ZuA7TcdzI25eZimbACip3e81X0_rPi0rfqdsNEz7jbjIZrbj96hyUe4uYICw"/>
+<!-- Heatmap Overlay (CSS simulated) -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary-fixed/20 via-transparent to-secondary/10 pointer-events-none"></div>
+<!-- Interactive Markers -->
+<!-- Marker 1 -->
+<div class="absolute top-[30%] left-[25%] group cursor-pointer" style="z-index: 10;">
+<div class="relative">
+<div class="w-6 h-6 bg-primary-fixed border-2 border-primary flex items-center justify-center pulse-effect">
+<span class="material-symbols-outlined text-primary text-xs" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<!-- Hover Tooltip -->
+<div class="hidden group-hover:block absolute top-8 left-0 min-w-[200px] bg-surface border-2 border-primary p-3 shadow-[6px_6px_0px_0px_rgba(26,26,26,1)] z-20 animate-in fade-in slide-in-from-top-2">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-black uppercase text-sm">Station Alpha-01</h4>
+<span class="bg-primary text-primary-fixed text-[10px] px-1 font-bold">ACTIVE</span>
+</div>
+<div class="space-y-1 text-xs">
+<div class="flex justify-between"><span class="opacity-60">Output:</span> <span class="font-bold">4.2 GW</span></div>
+<div class="flex justify-between"><span class="opacity-60">Efficiency:</span> <span class="font-bold">98.4%</span></div>
+<div class="flex justify-between"><span class="opacity-60">Temp:</span> <span class="font-bold">32°C</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Marker 2 -->
+<div class="absolute top-[55%] left-[60%] group cursor-pointer" style="z-index: 10;">
+<div class="relative">
+<div class="w-6 h-6 bg-primary-fixed border-2 border-primary flex items-center justify-center pulse-effect">
+<span class="material-symbols-outlined text-primary text-xs" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="hidden group-hover:block absolute top-8 left-0 min-w-[200px] bg-surface border-2 border-primary p-3 shadow-[6px_6px_0px_0px_rgba(26,26,26,1)] z-20">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-black uppercase text-sm">Grid Node Beta</h4>
+<span class="bg-primary text-primary-fixed text-[10px] px-1 font-bold">STABLE</span>
+</div>
+<div class="space-y-1 text-xs">
+<div class="flex justify-between"><span class="opacity-60">Load:</span> <span class="font-bold">78%</span></div>
+<div class="flex justify-between"><span class="opacity-60">Status:</span> <span class="font-bold">Optimal</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Marker 3 (Issue) -->
+<div class="absolute top-[40%] left-[80%] group cursor-pointer" style="z-index: 10;">
+<div class="relative">
+<div class="w-6 h-6 bg-secondary border-2 border-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-xs" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="hidden group-hover:block absolute top-8 right-0 min-w-[200px] bg-surface border-2 border-primary p-3 shadow-[6px_6px_0px_0px_rgba(26,26,26,1)] z-20">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-black uppercase text-sm">Station Delta-9</h4>
+<span class="bg-secondary text-white text-[10px] px-1 font-bold">ALERT</span>
+</div>
+<div class="space-y-1 text-xs">
+<div class="flex justify-between text-secondary font-bold"><span>VOLTAGE DROP</span></div>
+<div class="flex justify-between"><span class="opacity-60">Efficiency:</span> <span class="font-bold">42.1%</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Controls: Top Left - Navigation/Search -->
+<div class="absolute top-6 left-6 z-20 flex gap-4">
+<div class="bg-surface border-2 border-primary p-1 flex items-center shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]">
+<div class="flex items-center px-4 h-10 gap-3 border-r-2 border-primary bg-surface-container">
+<span class="material-symbols-outlined text-primary">search</span>
+<input class="bg-transparent border-none focus:ring-0 font-headline font-bold text-sm uppercase placeholder:text-primary/40 w-48" placeholder="LOCATE STATION..." type="text"/>
+</div>
+<button class="h-10 px-4 hover:bg-primary hover:text-surface transition-colors flex items-center">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Floating Controls: Top Right - Stats Summary -->
+<div class="absolute top-6 right-6 z-20 flex flex-col gap-4 items-end">
+<div class="bg-primary border-2 border-primary text-primary-fixed p-4 shadow-[6px_6px_0px_0px_rgba(26,26,26,1)]">
+<p class="font-headline font-black text-xs uppercase tracking-widest opacity-80 mb-1">Total Grid Output</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline font-black text-4xl">142.82</span>
+<span class="font-headline font-black text-xl">GWh</span>
+</div>
+<div class="mt-2 flex items-center gap-2 text-xs font-bold bg-primary-fixed text-primary px-2 py-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12.4% FROM YESTERDAY</span>
+</div>
+</div>
+</div>
+<!-- Floating Controls: Bottom Left - Legend -->
+<div class="absolute bottom-6 left-6 z-20 bg-surface border-2 border-primary p-4 shadow-[6px_6px_0px_0px_rgba(26,26,26,1)] w-64">
+<h3 class="font-headline font-black uppercase text-sm mb-3 border-b-2 border-primary pb-1">Map Visualization</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold uppercase">Heatmap Density</span>
+<div class="flex h-3 w-24 border border-primary">
+<div class="h-full w-1/4 bg-primary-fixed/20"></div>
+<div class="h-full w-1/4 bg-primary-fixed/40"></div>
+<div class="h-full w-1/4 bg-primary-fixed/70"></div>
+<div class="h-full w-1/4 bg-primary-fixed"></div>
+</div>
+</div>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 border-2 border-primary text-primary focus:ring-0 rounded-none" type="checkbox"/>
+<span class="text-xs font-bold uppercase group-hover:text-tertiary transition-colors">Show Connectivity Grid</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 border-2 border-primary text-primary focus:ring-0 rounded-none" type="checkbox"/>
+<span class="text-xs font-bold uppercase group-hover:text-tertiary transition-colors">Show Satellite Labels</span>
+</label>
+</div>
+</div>
+<!-- Floating Controls: Bottom Right - Region List (Bento-style scrollable) -->
+<div class="absolute bottom-6 right-6 z-20 w-80 bg-surface border-2 border-primary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] flex flex-col max-h-[400px]">
+<div class="p-4 border-b-2 border-primary bg-primary text-surface-bright flex justify-between items-center">
+<h3 class="font-headline font-black uppercase text-sm">Regional Connectivity</h3>
+<span class="text-[10px] font-bold px-2 py-0.5 bg-primary-fixed text-primary">LIVE DATA</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-2 space-y-2">
+<!-- Region Item -->
+<div class="p-3 border-2 border-primary bg-surface-container hover:bg-tertiary-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-black text-xs uppercase">Region North-W</span>
+<span class="material-symbols-outlined text-sm text-green-600">sync_alt</span>
+</div>
+<div class="h-2 w-full bg-surface border border-primary mb-2 overflow-hidden">
+<div class="h-full bg-primary-fixed w-[85%] border-r border-primary"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold uppercase opacity-70">
+<span>Load: 85%</span>
+<span>Stable</span>
+</div>
+</div>
+<!-- Region Item -->
+<div class="p-3 border-2 border-primary bg-surface-container hover:bg-tertiary-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-black text-xs uppercase">Central Basin</span>
+<span class="material-symbols-outlined text-sm text-green-600">sync_alt</span>
+</div>
+<div class="h-2 w-full bg-surface border border-primary mb-2 overflow-hidden">
+<div class="h-full bg-primary-fixed w-[92%] border-r border-primary"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold uppercase opacity-70">
+<span>Load: 92%</span>
+<span>Stable</span>
+</div>
+</div>
+<!-- Region Item (Warning) -->
+<div class="p-3 border-2 border-primary bg-secondary-container hover:bg-secondary/10 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-black text-xs uppercase text-secondary">Eastern Shore</span>
+<span class="material-symbols-outlined text-sm text-secondary animate-pulse">priority_high</span>
+</div>
+<div class="h-2 w-full bg-surface border border-primary mb-2 overflow-hidden">
+<div class="h-full bg-secondary w-[18%] border-r border-primary"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold uppercase text-secondary">
+<span>Load: 18%</span>
+<span>Critical</span>
+</div>
+</div>
+<!-- Region Item -->
+<div class="p-3 border-2 border-primary bg-surface-container hover:bg-tertiary-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline font-black text-xs uppercase">Southern Plains</span>
+<span class="material-symbols-outlined text-sm text-green-600">sync_alt</span>
+</div>
+<div class="h-2 w-full bg-surface border border-primary mb-2 overflow-hidden">
+<div class="h-full bg-primary-fixed w-[66%] border-r border-primary"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold uppercase opacity-70">
+<span>Load: 66%</span>
+<span>Stable</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-tertiary text-on-tertiary font-headline font-bold uppercase text-xs border-t-2 border-primary hover:bg-primary transition-colors">
+                View Full Network Log
+            </button>
+</div>
+<!-- Floating Map Tools -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex bg-surface border-2 border-primary shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] overflow-hidden">
+<button class="p-3 border-r-2 border-primary hover:bg-primary-fixed transition-colors" title="Zoom In">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-3 border-r-2 border-primary hover:bg-primary-fixed transition-colors" title="Zoom Out">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="p-3 border-r-2 border-primary hover:bg-primary-fixed transition-colors" title="My Location">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<button class="p-3 hover:bg-primary-fixed transition-colors" title="Toggle Layer">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+</main>
+<script>
+        // Micro-interaction for markers
+        document.querySelectorAll('.group').forEach(marker => {
+            marker.addEventListener('mouseenter', () => {
+                // Potential for adding dynamic coordinate jitter or sound effect simulation
+            });
+        });
+
+        // Simple Clock / Time overlay
+        const timeDisplay = document.createElement('div');
+        timeDisplay.className = 'fixed bottom-4 right-[340px] z-50 font-headline font-black text-primary text-sm bg-surface-bright border-2 border-primary px-3 py-1';
+        document.body.appendChild(timeDisplay);
+
+        function updateTime() {
+            const now = new Date();
+            timeDisplay.innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body></html>

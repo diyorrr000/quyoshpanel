@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SOLAR_OS | Battery Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a8c6ff",
+                        "surface-bright": "#faf7f2",
+                        "primary-fixed": "#ffcc00",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e2ddd4",
+                        "on-primary-fixed": "#1a1a1a",
+                        "secondary": "#e63b2e",
+                        "tertiary-container": "#d6e3ff",
+                        "on-background": "#1a1a1a",
+                        "on-tertiary-fixed-variant": "#1a1a1a",
+                        "inverse-on-surface": "#f5f0e8",
+                        "on-secondary-fixed": "#1a1a1a",
+                        "surface-variant": "#e8e3da",
+                        "surface": "#f5f0e8",
+                        "on-secondary-fixed-variant": "#1a1a1a",
+                        "surface-container-high": "#e8e3da",
+                        "primary-container": "#ffcc00",
+                        "surface-tint": "#1a1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#1a1a1a",
+                        "inverse-primary": "#f5f0e8",
+                        "secondary-fixed-dim": "#ffb3ab",
+                        "surface-container-low": "#f2ede5",
+                        "on-secondary": "#1a1a1a",
+                        "primary-fixed-dim": "#e6b800",
+                        "tertiary-fixed": "#d6e3ff",
+                        "tertiary": "#0055ff",
+                        "on-surface": "#1a1a1a",
+                        "on-primary-fixed-variant": "#1a1a1a",
+                        "on-secondary-container": "#1a1a1a",
+                        "primary": "#1a1a1a",
+                        "on-tertiary-fixed": "#1a1a1a",
+                        "surface-dim": "#d6d1c9",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#1a1a1a",
+                        "secondary-container": "#ffdad6",
+                        "on-tertiary-container": "#1a1a1a",
+                        "outline-variant": "#d0cbc3",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#cc0000",
+                        "secondary-fixed": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#1a1a1a",
+                        "on-surface-variant": "#4a4a4a",
+                        "background": "#f5f0e8",
+                        "surface-container": "#eee9e0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .neo-shadow {
+            box-shadow: 6px 6px 0px 0px #1a1a1a;
+        }
+        .neo-shadow-sm {
+            box-shadow: 4px 4px 0px 0px #1a1a1a;
+        }
+        .charge-ring {
+            transition: stroke-dashoffset 0.5s ease;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        @keyframes flow {
+            from { stroke-dashoffset: 20; }
+            to { stroke-dashoffset: 0; }
+        }
+        .energy-flow-line {
+            stroke-dasharray: 5, 15;
+            animation: flow 1s linear infinite;
+        }
+        .scrolling-text {
+            white-space: nowrap;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="w-full h-16 border-b-4 border-primary dark:border-primary-fixed bg-surface flex justify-between items-center px-6 fixed top-0 z-50">
+<div class="flex items-center gap-8">
+<h1 class="font-headline font-black text-2xl tracking-tighter text-primary">SOLAR_OS</h1>
+<div class="hidden md:flex items-center border-2 border-primary px-3 py-1 bg-surface-container">
+<span class="material-symbols-outlined text-primary mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-sm font-headline uppercase tracking-wider w-64" placeholder="SEARCH SYSTEM..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-6 items-center">
+<span class="material-symbols-outlined cursor-pointer hover:text-tertiary transition-colors" data-icon="language">language</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary transition-colors" data-icon="notifications">notifications</span>
+<div class="flex items-center gap-2 cursor-pointer group">
+<div class="w-8 h-8 border-2 border-primary overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqueCRKPMr2bSBTkk2hKHX9n9tFXjXnanQULiDMCC1ELhoOv9YdMb5SM7OMdJ3nbye1HY2f5iMJK5fF0f0Bl0s7c-4IY60E7fAiAwpVbmdZt4DwzgUUOeMbAfTnkjpopproAvCib93U4ugm40WrfVqeBrS65ENgZiEp21lYRWjLTpaS8egBDUNDmBF-E3smNo3zyKc8WanODgmMmTakWxJzLcZJxdhfns1F4CLnUOLkhWITRq2k_37UfU6ZvxDTkzvK-Bwyq3mTQE"/>
+</div>
+<span class="font-headline font-bold text-label-sm uppercase tracking-wider group-hover:text-tertiary">Profile</span>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 border-r-4 border-primary bg-surface flex flex-col justify-between py-6 z-40 hidden md:flex">
+<nav class="flex flex-col">
+<!-- Navigation Items Mapping from JSON -->
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-4 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-4 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="solar_power">solar_power</span>
+<span>Solar Panels</span>
+</a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-4 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Analytics</span>
+</a>
+<!-- Active Tab -->
+<a class="bg-primary-container border-2 border-primary text-primary m-2 p-3 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] flex items-center gap-4 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="battery_charging_full">battery_charging_full</span>
+<span>Battery</span>
+</a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-4 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="cloud">cloud</span>
+<span>Weather</span>
+</a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-4 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span>Maps</span>
+</a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-4 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="px-6">
+<button class="w-full bg-secondary text-on-primary py-4 border-2 border-primary font-headline font-black uppercase tracking-tighter neo-shadow-sm active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                Emergency Stop
+            </button>
+<div class="mt-8 text-center">
+<p class="font-headline font-black text-3xl italic tracking-tighter text-primary">SOLAR_OS</p>
+<p class="font-headline text-xs font-bold uppercase opacity-60">V2.4.0</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-72 pt-20 p-6 min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-10 border-b-4 border-primary pb-6">
+<div>
+<h2 class="font-headline font-black text-6xl md:text-8xl uppercase tracking-tighter leading-none">Battery<br/><span class="text-tertiary">Storage</span></h2>
+<div class="flex gap-4 mt-4">
+<span class="bg-primary text-surface px-3 py-1 font-headline font-bold text-sm">SYSTEM ACTIVE</span>
+<span class="border-2 border-primary px-3 py-1 font-headline font-bold text-sm">NODES: 04</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="font-headline font-bold text-2xl uppercase">Total Capacity</p>
+<p class="font-headline font-black text-6xl text-primary">84.2<span class="text-2xl">kWh</span></p>
+</div>
+</div>
+<!-- Energy Flow Visualizer (Bento Grid Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+<!-- Flow Diagram Card -->
+<div class="lg:col-span-8 bg-surface border-4 border-primary p-8 neo-shadow flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-headline font-black text-3xl uppercase italic">Energy Transfer Flow</h3>
+<div class="flex gap-2">
+<div class="w-3 h-3 bg-secondary"></div>
+<div class="w-3 h-3 bg-tertiary"></div>
+<div class="w-3 h-3 bg-primary-fixed"></div>
+</div>
+</div>
+<div class="flex flex-1 items-center justify-around relative">
+<!-- Source: Panels -->
+<div class="z-10 flex flex-col items-center">
+<div class="w-24 h-24 border-4 border-primary bg-primary-fixed flex items-center justify-center neo-shadow-sm mb-4">
+<span class="material-symbols-outlined text-4xl" data-icon="solar_power">solar_power</span>
+</div>
+<p class="font-headline font-bold uppercase">Solar Array</p>
+<p class="font-headline text-2xl font-black text-secondary">+5.4 kW</p>
+</div>
+<!-- Flow Animation -->
+<div class="flex-1 px-4 relative h-10">
+<svg class="w-full h-full" overflow="visible">
+<path class="energy-flow-line" d="M 0 20 Q 50 0, 100 20 T 200 20 T 300 20" fill="transparent" stroke="#1a1a1a" stroke-width="4"></path>
+</svg>
+</div>
+<!-- Hub: Main Battery -->
+<div class="z-10 flex flex-col items-center">
+<div class="relative w-40 h-40">
+<svg class="w-full h-full">
+<circle cx="80" cy="80" fill="transparent" r="70" stroke="#e8e3da" stroke-width="12"></circle>
+<circle class="charge-ring" cx="80" cy="80" fill="transparent" r="70" stroke="#0055ff" stroke-dasharray="440" stroke-dashoffset="110" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline font-black text-4xl">75%</span>
+<span class="font-headline text-xs font-bold uppercase opacity-60">SOC</span>
+</div>
+</div>
+<p class="font-headline font-bold uppercase mt-4">Central Hub</p>
+</div>
+<!-- Flow Animation -->
+<div class="flex-1 px-4 relative h-10">
+<svg class="w-full h-full" overflow="visible">
+<path class="energy-flow-line" d="M 0 20 Q 50 40, 100 20 T 200 20 T 300 20" fill="transparent" stroke="#1a1a1a" stroke-width="4" style="animation-direction: reverse;"></path>
+</svg>
+</div>
+<!-- Load: Home -->
+<div class="z-10 flex flex-col items-center">
+<div class="w-24 h-24 border-4 border-primary bg-tertiary flex items-center justify-center neo-shadow-sm mb-4">
+<span class="material-symbols-outlined text-4xl text-surface" data-icon="home">home</span>
+</div>
+<p class="font-headline font-bold uppercase">Grid Load</p>
+<p class="font-headline text-2xl font-black text-tertiary">-1.2 kW</p>
+</div>
+</div>
+<!-- Scrolling Ticker -->
+<div class="absolute bottom-0 left-0 w-full border-t-2 border-primary bg-primary-fixed overflow-hidden h-8 flex items-center">
+<div class="scrolling-text font-headline font-bold text-sm uppercase">
+                        SYSTEM OPTIMIZED — DISCHARGE RATE NOMINAL — TEMPERATURE STABLE AT 24°C — ALL CELLS BALANCED — BACKUP RESERVES AT 100% — GRID FREQUENCY 60HZ
+                    </div>
+</div>
+</div>
+<!-- Health & Metrics Card -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-primary text-surface p-6 neo-shadow flex-1">
+<h4 class="font-headline font-bold uppercase mb-4 text-primary-fixed">Core Health</h4>
+<div class="flex items-center justify-between border-b border-surface-variant pb-4 mb-4">
+<span class="font-headline uppercase text-sm">State of Health (SOH)</span>
+<span class="font-headline font-black text-3xl">98.2%</span>
+</div>
+<div class="flex items-center justify-between border-b border-surface-variant pb-4 mb-4">
+<span class="font-headline uppercase text-sm">Temp Monitoring</span>
+<span class="font-headline font-black text-3xl">24.5°C</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-headline uppercase text-sm">Cycles Used</span>
+<span class="font-headline font-black text-3xl">142</span>
+</div>
+</div>
+<div class="bg-tertiary text-surface p-6 neo-shadow flex-1">
+<div class="flex flex-col h-full justify-between">
+<div>
+<span class="material-symbols-outlined text-4xl mb-2" data-icon="hourglass_empty">hourglass_empty</span>
+<h4 class="font-headline font-bold uppercase">Est. Runtime</h4>
+</div>
+<div>
+<p class="font-headline font-black text-5xl leading-none">18h 42m</p>
+<p class="font-headline text-xs uppercase font-bold mt-2 opacity-80">AT CURRENT DISCHARGE RATE</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Individual Units Grid -->
+<h3 class="font-headline font-black text-4xl uppercase mb-6 tracking-tight">Storage Units (Nodes)</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+<!-- Unit 1 -->
+<div class="bg-surface border-4 border-primary p-6 neo-shadow-sm hover:-translate-y-1 hover:translate-x-1 transition-transform">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-headline font-black text-xl uppercase">Node_01</p>
+<p class="text-xs font-bold uppercase text-on-surface-variant">LFP-48V-200AH</p>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="bolt" data-weight="fill">bolt</span>
+</div>
+<div class="w-full bg-surface-container border-2 border-primary h-4 mb-6">
+<div class="h-full bg-primary-fixed border-r-2 border-primary" style="width: 85%;"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] font-bold uppercase opacity-60">SOC</p>
+<p class="font-headline font-extrabold text-2xl">85%</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase opacity-60">Temp</p>
+<p class="font-headline font-extrabold text-2xl">22°C</p>
+</div>
+</div>
+</div>
+<!-- Unit 2 -->
+<div class="bg-surface border-4 border-primary p-6 neo-shadow-sm hover:-translate-y-1 hover:translate-x-1 transition-transform">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-headline font-black text-xl uppercase">Node_02</p>
+<p class="text-xs font-bold uppercase text-on-surface-variant">LFP-48V-200AH</p>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="bolt" data-weight="fill">bolt</span>
+</div>
+<div class="w-full bg-surface-container border-2 border-primary h-4 mb-6">
+<div class="h-full bg-primary-fixed border-r-2 border-primary" style="width: 72%;"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] font-bold uppercase opacity-60">SOC</p>
+<p class="font-headline font-extrabold text-2xl">72%</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase opacity-60">Temp</p>
+<p class="font-headline font-extrabold text-2xl">25°C</p>
+</div>
+</div>
+</div>
+<!-- Unit 3 -->
+<div class="bg-surface border-4 border-primary p-6 neo-shadow-sm hover:-translate-y-1 hover:translate-x-1 transition-transform">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-headline font-black text-xl uppercase">Node_03</p>
+<p class="text-xs font-bold uppercase text-on-surface-variant">LFP-48V-200AH</p>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="bolt" data-weight="fill">bolt</span>
+</div>
+<div class="w-full bg-surface-container border-2 border-primary h-4 mb-6">
+<div class="h-full bg-primary-fixed border-r-2 border-primary" style="width: 68%;"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] font-bold uppercase opacity-60">SOC</p>
+<p class="font-headline font-extrabold text-2xl">68%</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase opacity-60">Temp</p>
+<p class="font-headline font-extrabold text-2xl">24°C</p>
+</div>
+</div>
+</div>
+<!-- Unit 4 -->
+<div class="bg-surface border-4 border-primary p-6 neo-shadow-sm hover:-translate-y-1 hover:translate-x-1 transition-transform">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-headline font-black text-xl uppercase">Node_04</p>
+<p class="text-xs font-bold uppercase text-on-surface-variant">LFP-48V-200AH</p>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="bolt" data-weight="fill">bolt</span>
+</div>
+<div class="w-full bg-surface-container border-2 border-primary h-4 mb-6">
+<div class="h-full bg-primary-fixed border-r-2 border-primary" style="width: 75%;"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] font-bold uppercase opacity-60">SOC</p>
+<p class="font-headline font-extrabold text-2xl">75%</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase opacity-60">Temp</p>
+<p class="font-headline font-extrabold text-2xl">27°C</p>
+</div>
+</div>
+</div>
+</div>
+<!-- History Chart Section -->
+<div class="mt-12 bg-surface border-4 border-primary p-8 neo-shadow">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<h3 class="font-headline font-black text-3xl uppercase">Discharge Cycles (24H)</h3>
+<div class="flex border-2 border-primary bg-surface-container">
+<button class="px-4 py-2 font-headline font-bold text-xs uppercase bg-primary text-surface">Day</button>
+<button class="px-4 py-2 font-headline font-bold text-xs uppercase hover:bg-primary hover:text-surface transition-colors">Week</button>
+<button class="px-4 py-2 font-headline font-bold text-xs uppercase hover:bg-primary hover:text-surface transition-colors">Month</button>
+</div>
+</div>
+<!-- Minimalist Brutalist Chart Representation -->
+<div class="h-64 flex items-end gap-2 border-l-2 border-b-2 border-primary p-2">
+<div class="bg-tertiary flex-1" style="height: 90%;"></div>
+<div class="bg-tertiary flex-1" style="height: 85%;"></div>
+<div class="bg-tertiary flex-1" style="height: 80%;"></div>
+<div class="bg-tertiary flex-1" style="height: 70%;"></div>
+<div class="bg-tertiary flex-1" style="height: 60%;"></div>
+<div class="bg-tertiary flex-1" style="height: 55%;"></div>
+<div class="bg-tertiary flex-1" style="height: 50%;"></div>
+<div class="bg-tertiary flex-1" style="height: 40%;"></div>
+<div class="bg-tertiary flex-1" style="height: 35%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 45%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 60%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 75%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 85%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 90%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 95%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 100%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 90%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 80%;"></div>
+<div class="bg-primary-fixed flex-1" style="height: 70%;"></div>
+<div class="bg-tertiary flex-1" style="height: 60%;"></div>
+<div class="bg-tertiary flex-1" style="height: 50%;"></div>
+<div class="bg-tertiary flex-1" style="height: 40%;"></div>
+<div class="bg-tertiary flex-1" style="height: 30%;"></div>
+<div class="bg-secondary flex-1" style="height: 15%;"></div>
+</div>
+<div class="flex justify-between mt-4 font-headline text-xs font-bold uppercase opacity-60 px-2">
+<span>00:00</span>
+<span>06:00</span>
+<span>12:00</span>
+<span>18:00</span>
+<span>23:59</span>
+</div>
+</div>
+</main>
+<!-- Visual Polish: Decorative Grid Overlay -->
+<div class="fixed inset-0 pointer-events-none z-[-1] opacity-[0.03]" style="background-image: radial-gradient(#1a1a1a 1px, transparent 1px); background-size: 24px 24px;"></div>
+<script>
+        // Micro-interactions for the circular animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const rings = document.querySelectorAll('.charge-ring');
+            rings.forEach(ring => {
+                const radius = ring.r.baseVal.value;
+                const circumference = 2 * Math.PI * radius;
+                ring.style.strokeDasharray = `${circumference} ${circumference}`;
+                
+                // Random dynamic update for SOC visualization
+                const soc = 75;
+                const offset = circumference - (soc / 100) * circumference;
+                ring.style.strokeDashoffset = offset;
+            });
+        });
+    </script>
+</body></html>

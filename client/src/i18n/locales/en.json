@@ -1,0 +1,34 @@
+{
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "solar_panels": "Solar Panels",
+        "devices": "Devices",
+        "analytics": "Energy Analytics",
+        "predictions": "AI Predictions",
+        "battery": "Battery Management",
+        "weather": "Weather Monitoring",
+        "reports": "Reports",
+        "notifications": "Notifications",
+        "security": "Security",
+        "automation": "Automation",
+        "maps": "Interactive Maps",
+        "users": "Users",
+        "settings": "System Settings",
+        "support": "Support",
+        "emergency_stop": "Emergency Stop"
+    },
+    "topbar": {
+        "search": "Search Node...",
+        "profile": "Profile"
+    },
+    "common": {
+        "efficiency": "Efficiency",
+        "voltage": "Voltage",
+        "temperature": "Temperature",
+        "status": "Status",
+        "online": "Online",
+        "offline": "Offline",
+        "active": "Active",
+        "maintenance": "Maintenance"
+    }
+}

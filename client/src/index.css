@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  :root {
+    --primary: #1a1a1a;
+    --primary-container: #ffcc00;
+    --surface: #f5f0e8;
+    --background: #f5f0e8;
+    --on-background: #1a1a1a;
+    --secondary: #e63b2e;
+    --tertiary: #0055ff;
+    --neon-active: #39ff14;
+    --surface-container: #eee9e0;
+  }
+
+  .dark {
+    --primary: #f5f0e8;
+    --primary-container: #333333;
+    --surface: #1a1a1a;
+    --background: #121212;
+    --on-background: #f5f0e8;
+    --secondary: #ff5252;
+    --tertiary: #448aff;
+    --surface-container: #2a2a2a;
+  }
+
+  .neon-mode {
+    --primary: #39ff14;
+    --primary-container: #1a1a1a;
+    --surface: #000000;
+    --background: #000000;
+    --on-background: #39ff14;
+    --secondary: #ff00ff;
+    --tertiary: #00ffff;
+    --neon-active: #39ff14;
+    --surface-container: #111111;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--on-background);
+    @apply font-body min-h-screen transition-colors duration-300;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--background);
+    border-left: 2px solid var(--primary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border: 2px solid var(--background);
+  }
+}
+
+@layer components {
+  .neo-shadow {
+    box-shadow: 6px 6px 0px 0px var(--primary);
+  }
+
+  .neo-shadow-sm {
+    box-shadow: 3px 3px 0px 0px var(--primary);
+  }
+
+  .neo-shadow-active {
+    @apply translate-x-[2px] translate-y-[2px];
+    box-shadow: 1px 1px 0px 0px var(--primary);
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(var(--outline-variant, #d0cbc3) 1px, transparent 1px), linear-gradient(90deg, var(--outline-variant, #d0cbc3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .neo-brutal-btn {
+    @apply transition-all duration-75 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none;
+  }
+}

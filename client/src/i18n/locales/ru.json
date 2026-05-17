@@ -1,0 +1,34 @@
+{
+    "sidebar": {
+        "dashboard": "Панель управления",
+        "solar_panels": "Солнечные панели",
+        "devices": "Устройства",
+        "analytics": "Аналитика энергии",
+        "predictions": "AI Прогнозы",
+        "battery": "Управление батареей",
+        "weather": "Мониторинг погоды",
+        "reports": "Отчеты",
+        "notifications": "Уведомления",
+        "security": "Безопасность",
+        "automation": "Автоматизация",
+        "maps": "Интерактивные карты",
+        "users": "Пользователи",
+        "settings": "Настройки системы",
+        "support": "Поддержка",
+        "emergency_stop": "Экстренная остановка"
+    },
+    "topbar": {
+        "search": "Поиск узла...",
+        "profile": "Профиль"
+    },
+    "common": {
+        "efficiency": "Эффективность",
+        "voltage": "Напряжение",
+        "temperature": "Температура",
+        "status": "Статус",
+        "online": "Онлайн",
+        "offline": "Оффлайн",
+        "active": "Активен",
+        "maintenance": "Обслуживание"
+    }
+}

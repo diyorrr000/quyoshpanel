@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#a8c6ff",
+                    "surface-bright": "#faf7f2",
+                    "primary-fixed": "#ffcc00",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e2ddd4",
+                    "on-primary-fixed": "#1a1a1a",
+                    "secondary": "#e63b2e",
+                    "tertiary-container": "#d6e3ff",
+                    "on-background": "#1a1a1a",
+                    "on-tertiary-fixed-variant": "#1a1a1a",
+                    "inverse-on-surface": "#f5f0e8",
+                    "on-secondary-fixed": "#1a1a1a",
+                    "surface-variant": "#e8e3da",
+                    "surface": "#f5f0e8",
+                    "on-secondary-fixed-variant": "#1a1a1a",
+                    "surface-container-high": "#e8e3da",
+                    "primary-container": "#ffcc00",
+                    "surface-tint": "#1a1a1a",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#1a1a1a",
+                    "inverse-primary": "#f5f0e8",
+                    "secondary-fixed-dim": "#ffb3ab",
+                    "surface-container-low": "#f2ede5",
+                    "on-secondary": "#1a1a1a",
+                    "primary-fixed-dim": "#e6b800",
+                    "tertiary-fixed": "#d6e3ff",
+                    "tertiary": "#0055ff",
+                    "on-surface": "#1a1a1a",
+                    "on-primary-fixed-variant": "#1a1a1a",
+                    "on-secondary-container": "#1a1a1a",
+                    "primary": "#1a1a1a",
+                    "on-tertiary-fixed": "#1a1a1a",
+                    "surface-dim": "#d6d1c9",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#1a1a1a",
+                    "secondary-container": "#ffdad6",
+                    "on-tertiary-container": "#1a1a1a",
+                    "outline-variant": "#d0cbc3",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "error": "#cc0000",
+                    "secondary-fixed": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#1a1a1a",
+                    "on-surface-variant": "#4a4a4a",
+                    "background": "#f5f0e8",
+                    "surface-container": "#eee9e0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "display": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f0e8;
+        }
+        .neo-brutal-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(26, 26, 26, 1);
+        }
+        .neo-brutal-shadow-lg {
+            box-shadow: 8px 8px 0px 0px rgba(26, 26, 26, 1);
+        }
+        .neo-brutal-shadow-hover:hover {
+            box-shadow: 6px 6px 0px 0px rgba(26, 26, 26, 1);
+            transform: translate(-2px, -2px);
+        }
+        .neo-brutal-shadow-active:active {
+            box-shadow: 0px 0px 0px 0px rgba(26, 26, 26, 1);
+            transform: translate(4px, 4px);
+        }
+        .chart-bar {
+            transition: height 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full flex flex-col justify-between py-6 bg-surface border-r-4 border-primary w-72 z-50">
+<div>
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="bg-primary text-primary-fixed p-2">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">solar_power</span>
+</div>
+<div>
+<h1 class="font-headline font-black text-3xl italic tracking-tighter text-primary">SOLAR_OS</h1>
+<p class="font-body text-[10px] uppercase tracking-[0.2em] opacity-60">V2.4.0</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">solar_power</span>
+                    Solar Panels
+                </a>
+<a class="bg-primary-container border-2 border-primary text-primary m-2 p-3 neo-brutal-shadow flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                    Analytics
+                </a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">battery_charging_full</span>
+                    Battery
+                </a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">cloud</span>
+                    Weather
+                </a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">map</span>
+                    Maps
+                </a>
+<a class="text-primary m-2 p-3 border-2 border-transparent hover:border-primary hover:bg-tertiary-container transition-all duration-75 flex items-center gap-3 font-headline font-bold uppercase" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</nav>
+</div>
+<div class="px-4">
+<button class="w-full bg-secondary text-on-primary py-4 border-4 border-primary font-headline font-black uppercase tracking-widest neo-brutal-shadow-hover neo-brutal-shadow-active transition-all">
+                Emergency Stop
+            </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-72 min-h-screen">
+<!-- Top Bar -->
+<header class="h-16 border-b-4 border-primary bg-surface flex justify-between items-center px-8 sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<div class="font-headline font-black text-2xl tracking-tighter text-primary">ENERGY ANALYTICS</div>
+<div class="flex gap-4">
+<span class="px-3 py-1 bg-primary text-primary-fixed font-headline font-bold text-sm">REAL_TIME</span>
+<span class="px-3 py-1 border-2 border-primary font-headline font-bold text-sm">STABLE_GRID</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 border-l-2 border-primary pl-6">
+<span class="material-symbols-outlined cursor-pointer hover:text-tertiary transition-colors">language</span>
+<div class="relative">
+<span class="material-symbols-outlined cursor-pointer hover:text-tertiary transition-colors">notifications</span>
+<span class="absolute -top-1 -right-1 w-3 h-3 bg-secondary border-2 border-primary"></span>
+</div>
+<div class="flex items-center gap-3 ml-4">
+<span class="font-headline font-bold text-sm uppercase">Profile</span>
+<div class="w-8 h-8 border-2 border-primary bg-primary-fixed overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo7_5q06wqY13qRZR6E3dzJezTaag9eV9IdR9ccvIduPxX2aS9lAVhGXptz8x2-r1zTDnxjw_OTnfKhU8VOb9e5S80FuLcNCMXyL7Y4biQ2at4f3X4i24bnDvXqynjO5eUOmosJG6HrEG6Bb25EoMTkdslVhQ8YZGiV2SfXEV7hRkBlLojTf_fsyEG4NgdL4JfPz4YO88M4bPbiYBboEOT28xfaLTJpceU1reweJUuKEx3ThHv7cfA73h2A9Em3GRu_Q8YyGy53fM"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Analytics Dashboard Canvas -->
+<div class="p-8 space-y-8">
+<!-- Quick Stats Bento -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container border-4 border-primary p-6 neo-brutal-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="font-headline font-bold text-xs uppercase tracking-tighter opacity-70">Daily Yield</span>
+<span class="material-symbols-outlined text-primary">wb_sunny</span>
+</div>
+<div class="font-headline font-black text-4xl">42.8 <span class="text-lg">kWh</span></div>
+<div class="mt-4 text-tertiary font-bold text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12% from avg
+                    </div>
+</div>
+<div class="bg-primary-container border-4 border-primary p-6 neo-brutal-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="font-headline font-bold text-xs uppercase tracking-tighter">Consumption</span>
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<div class="font-headline font-black text-4xl">18.2 <span class="text-lg">kWh</span></div>
+<div class="mt-4 text-primary font-bold text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> -4% from avg
+                    </div>
+</div>
+<div class="bg-surface-container border-4 border-primary p-6 neo-brutal-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="font-headline font-bold text-xs uppercase tracking-tighter opacity-70">Grid Export</span>
+<span class="material-symbols-outlined text-primary">logout</span>
+</div>
+<div class="font-headline font-black text-4xl">24.6 <span class="text-lg">kWh</span></div>
+<div class="mt-4 text-tertiary font-bold text-sm">Peak: 14:00</div>
+</div>
+<div class="bg-tertiary-container border-4 border-primary p-6 neo-brutal-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="font-headline font-bold text-xs uppercase tracking-tighter opacity-70">System Efficiency</span>
+<span class="material-symbols-outlined text-primary">speed</span>
+</div>
+<div class="font-headline font-black text-4xl">94.2 <span class="text-lg">%</span></div>
+<div class="mt-4 text-primary font-bold text-sm">Optimal Range</div>
+</div>
+</div>
+<!-- Primary Visualization Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Large Production Chart Area -->
+<div class="lg:col-span-2 bg-surface border-4 border-primary p-8 neo-brutal-shadow">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h2 class="font-headline font-black text-3xl uppercase italic tracking-tighter">Energy Production Flow</h2>
+<p class="font-body text-sm text-on-surface-variant">Real-time delta between solar generation and household load</p>
+</div>
+<div class="flex border-2 border-primary">
+<button class="px-4 py-2 bg-primary text-primary-fixed font-headline font-bold text-xs">DAILY</button>
+<button class="px-4 py-2 border-l-2 border-primary hover:bg-surface-container-high transition-colors font-headline font-bold text-xs">WEEKLY</button>
+<button class="px-4 py-2 border-l-2 border-primary hover:bg-surface-container-high transition-colors font-headline font-bold text-xs">MONTHLY</button>
+</div>
+</div>
+<!-- Synthetic Bar Chart -->
+<div class="relative h-64 flex items-end justify-between gap-2 border-b-2 border-primary pb-2 px-4">
+<!-- Chart Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-t border-dashed border-outline-variant w-full h-0"></div>
+<div class="border-t border-dashed border-outline-variant w-full h-0"></div>
+<div class="border-t border-dashed border-outline-variant w-full h-0"></div>
+<div class="border-t border-dashed border-outline-variant w-full h-0"></div>
+</div>
+<!-- Data Bars -->
+<div class="relative group w-full h-full flex items-end justify-between gap-3">
+<div class="flex flex-col items-center flex-1 gap-1">
+<div class="w-full bg-primary-container border-2 border-primary" style="height: 20%;"></div>
+<div class="w-full bg-tertiary border-2 border-primary" style="height: 40%;"></div>
+<span class="font-label text-[10px] mt-2">08:00</span>
+</div>
+<div class="flex flex-col items-center flex-1 gap-1">
+<div class="w-full bg-primary-container border-2 border-primary" style="height: 45%;"></div>
+<div class="w-full bg-tertiary border-2 border-primary" style="height: 35%;"></div>
+<span class="font-label text-[10px] mt-2">10:00</span>
+</div>
+<div class="flex flex-col items-center flex-1 gap-1">
+<div class="w-full bg-primary-container border-2 border-primary" style="height: 75%;"></div>
+<div class="w-full bg-tertiary border-2 border-primary" style="height: 30%;"></div>
+<span class="font-label text-[10px] mt-2">12:00</span>
+</div>
+<div class="flex flex-col items-center flex-1 gap-1">
+<div class="w-full bg-primary-container border-2 border-primary" style="height: 90%;"></div>
+<div class="w-full bg-tertiary border-2 border-primary" style="height: 25%;"></div>
+<span class="font-label text-[10px] mt-2">14:00</span>
+</div>
+<div class="flex flex-col items-center flex-1 gap-1">
+<div class="w-full bg-primary-container border-2 border-primary" style="height: 65%;"></div>
+<div class="w-full bg-tertiary border-2 border-primary" style="height: 40%;"></div>
+<span class="font-label text-[10px] mt-2">16:00</span>
+</div>
+<div class="flex flex-col items-center flex-1 gap-1">
+<div class="w-full bg-primary-container border-2 border-primary" style="height: 30%;"></div>
+<div class="w-full bg-tertiary border-2 border-primary" style="height: 55%;"></div>
+<span class="font-label text-[10px] mt-2">18:00</span>
+</div>
+<div class="flex flex-col items-center flex-1 gap-1">
+<div class="w-full bg-primary-container border-2 border-primary" style="height: 10%;"></div>
+<div class="w-full bg-tertiary border-2 border-primary" style="height: 70%;"></div>
+<span class="font-label text-[10px] mt-2">20:00</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex gap-8 justify-center">
+<div class="flex items-center gap-2">
+<span class="w-4 h-4 bg-primary-container border-2 border-primary"></span>
+<span class="font-headline font-bold text-xs uppercase">Solar Production</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-4 h-4 bg-tertiary border-2 border-primary"></span>
+<span class="font-headline font-bold text-xs uppercase">Consumption Load</span>
+</div>
+</div>
+</div>
+<!-- Secondary Data Widget -->
+<div class="bg-primary border-4 border-primary p-8 neo-brutal-shadow flex flex-col justify-between text-primary-fixed">
+<div>
+<h2 class="font-headline font-black text-3xl uppercase italic tracking-tighter mb-4 leading-none">Peak Usage Analysis</h2>
+<p class="font-body text-sm opacity-80 mb-8">System identified maximum load period between 14:00 - 15:30 today.</p>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="text-4xl font-headline font-black">6.4 <span class="text-xl">kW</span></div>
+<div class="h-0.5 bg-primary-fixed flex-grow opacity-30"></div>
+<span class="font-headline font-bold text-xs uppercase">Max Load</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-4xl font-headline font-black">88 <span class="text-xl">%</span></div>
+<div class="h-0.5 bg-primary-fixed flex-grow opacity-30"></div>
+<span class="font-headline font-bold text-xs uppercase">Self-Sufficient</span>
+</div>
+</div>
+</div>
+<div class="mt-12 bg-surface p-4 border-2 border-primary-fixed text-primary">
+<div class="flex items-center justify-between mb-4">
+<span class="font-headline font-black text-lg">AI ADVISORY</span>
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<p class="text-xs font-body leading-relaxed">Consider shifting heavy appliance usage (Dishwasher, EV Charging) to 12:30 for 100% solar utilization.</p>
+</div>
+</div>
+</div>
+<!-- Detailed Historical Table -->
+<div class="bg-surface border-4 border-primary neo-brutal-shadow overflow-hidden">
+<div class="p-6 border-b-4 border-primary flex justify-between items-center bg-surface-container">
+<h3 class="font-headline font-black text-2xl uppercase italic">Historical Export Logs</h3>
+<div class="flex gap-4">
+<div class="relative">
+<input class="bg-surface border-2 border-primary pl-10 pr-4 py-2 font-body text-sm focus:ring-0 focus:border-tertiary w-64" placeholder="Search logs..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary opacity-50">search</span>
+</div>
+<button class="bg-primary text-primary-fixed px-6 py-2 font-headline font-bold text-sm hover:bg-on-surface transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span> EXPORT CSV
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body">
+<thead>
+<tr class="bg-primary text-primary-fixed uppercase font-headline text-xs tracking-widest">
+<th class="p-4 border-r border-primary-fixed/20">Timestamp</th>
+<th class="p-4 border-r border-primary-fixed/20">Generated (kWh)</th>
+<th class="p-4 border-r border-primary-fixed/20">Consumed (kWh)</th>
+<th class="p-4 border-r border-primary-fixed/20">Grid Status</th>
+<th class="p-4 border-r border-primary-fixed/20">Revenue ($)</th>
+<th class="p-4">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-2 divide-primary">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4 font-bold border-r-2 border-primary/10">Today, 14:00</td>
+<td class="p-4 border-r-2 border-primary/10">12.4</td>
+<td class="p-4 border-r-2 border-primary/10">1.2</td>
+<td class="p-4 border-r-2 border-primary/10">
+<span class="px-2 py-1 bg-tertiary-container text-tertiary border border-tertiary text-[10px] font-black uppercase">Exporting</span>
+</td>
+<td class="p-4 border-r-2 border-primary/10 font-black">+$2.14</td>
+<td class="p-4">
+<button class="p-2 border-2 border-primary group-hover:bg-primary group-hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4 font-bold border-r-2 border-primary/10">Today, 13:00</td>
+<td class="p-4 border-r-2 border-primary/10">14.1</td>
+<td class="p-4 border-r-2 border-primary/10">1.1</td>
+<td class="p-4 border-r-2 border-primary/10">
+<span class="px-2 py-1 bg-tertiary-container text-tertiary border border-tertiary text-[10px] font-black uppercase">Exporting</span>
+</td>
+<td class="p-4 border-r-2 border-primary/10 font-black">+$2.88</td>
+<td class="p-4">
+<button class="p-2 border-2 border-primary group-hover:bg-primary group-hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4 font-bold border-r-2 border-primary/10">Today, 12:00</td>
+<td class="p-4 border-r-2 border-primary/10">11.8</td>
+<td class="p-4 border-r-2 border-primary/10">3.4</td>
+<td class="p-4 border-r-2 border-primary/10">
+<span class="px-2 py-1 bg-tertiary-container text-tertiary border border-tertiary text-[10px] font-black uppercase">Exporting</span>
+</td>
+<td class="p-4 border-r-2 border-primary/10 font-black">+$1.92</td>
+<td class="p-4">
+<button class="p-2 border-2 border-primary group-hover:bg-primary group-hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4 font-bold border-r-2 border-primary/10">Today, 11:00</td>
+<td class="p-4 border-r-2 border-primary/10">8.2</td>
+<td class="p-4 border-r-2 border-primary/10">6.7</td>
+<td class="p-4 border-r-2 border-primary/10">
+<span class="px-2 py-1 bg-tertiary-container text-tertiary border border-tertiary text-[10px] font-black uppercase">Exporting</span>
+</td>
+<td class="p-4 border-r-2 border-primary/10 font-black">+$0.45</td>
+<td class="p-4">
+<button class="p-2 border-2 border-primary group-hover:bg-primary group-hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Interactive Efficiency Trends Asymmetric Section -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+<div class="md:col-span-3 bg-tertiary text-on-tertiary border-4 border-primary p-8 neo-brutal-shadow">
+<h3 class="font-headline font-black text-3xl uppercase mb-6">Thermal Efficiency Delta</h3>
+<div class="aspect-[21/9] bg-primary relative overflow-hidden flex items-center justify-center">
+<!-- Abstract Geometric Visualization of "Trends" -->
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<svg class="w-full h-full p-4" viewbox="0 0 1000 400">
+<path d="M0,350 L100,320 L200,340 L300,280 L400,290 L500,200 L600,180 L700,150 L800,120 L900,100 L1000,80" fill="none" stroke="#ffcc00" stroke-linecap="square" stroke-width="12"></path>
+<path d="M0,360 L100,340 L200,350 L300,310 L400,320 L500,250 L600,240 L700,220 L800,200 L900,190 L1000,180" fill="none" stroke="#ffffff" stroke-dasharray="10 10" stroke-width="6"></path>
+</svg>
+<div class="absolute top-4 right-4 space-y-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary-fixed"></div>
+<span class="text-[10px] font-black uppercase">Current Pattern</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 border border-white"></div>
+<span class="text-[10px] font-black uppercase">Seasonal Median</span>
+</div>
+</div>
+</div>
+<div class="mt-6 flex justify-between">
+<div>
+<span class="block text-xs uppercase font-bold opacity-70">Trend Trajectory</span>
+<span class="text-2xl font-headline font-black">+4.2% Efficiency Growth</span>
+</div>
+<div class="text-right">
+<span class="block text-xs uppercase font-bold opacity-70">Impact Score</span>
+<span class="text-2xl font-headline font-black">A+ PLATINUM</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-2 space-y-8">
+<div class="bg-surface-container border-4 border-primary p-6 neo-brutal-shadow">
+<h4 class="font-headline font-black text-xl uppercase mb-4">Device Consumption</h4>
+<div class="space-y-4">
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold">
+<span>EV CHARGER</span>
+<span>5.2 kWh</span>
+</div>
+<div class="w-full bg-primary/10 h-6 border-2 border-primary overflow-hidden">
+<div class="bg-primary h-full" style="width: 65%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold">
+<span>HVAC SYSTEM</span>
+<span>2.8 kWh</span>
+</div>
+<div class="w-full bg-primary/10 h-6 border-2 border-primary overflow-hidden">
+<div class="bg-secondary h-full" style="width: 35%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold">
+<span>KITCHEN APPL.</span>
+<span>1.4 kWh</span>
+</div>
+<div class="w-full bg-primary/10 h-6 border-2 border-primary overflow-hidden">
+<div class="bg-tertiary h-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary-container border-4 border-primary p-6 neo-brutal-shadow flex items-center gap-6">
+<div class="w-16 h-16 bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-fixed text-3xl">psychology</span>
+</div>
+<div>
+<h4 class="font-headline font-black text-lg uppercase leading-tight">Optimization Locked</h4>
+<p class="text-xs font-body mt-1">Solar_OS is currently managing 4 loads for maximum grid-independent uptime.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / System Pulse -->
+<footer class="mt-12 p-8 border-t-4 border-primary bg-surface flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4">
+<div class="w-3 h-3 bg-[#00ff00] rounded-full animate-pulse shadow-[0_0_8px_#00ff00]"></div>
+<span class="font-headline font-bold text-xs uppercase tracking-widest">SYSTEM STATUS: OPTIMAL_NOMINAL</span>
+</div>
+<div class="font-label text-[10px] opacity-40 uppercase tracking-[0.3em]">
+                © SOLAR_OS ENTERPRISE ANALYTICS 2024 // ALL RIGHTS RESERVED
+            </div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">help</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">share</span>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interaction: Hover effects on table rows and bars
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'scale(1.002)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple animation for bars on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach((bar, index) => {
+                const finalHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.height = finalHeight;
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>
