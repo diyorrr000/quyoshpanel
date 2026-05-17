@@ -21,19 +21,19 @@ import {
 } from 'lucide-react';
 
 const navItems = [
-    { path: '/', icon: LayoutDashboard, label: 'dashboard' },
-    { path: '/panels', icon: Sun, label: 'solar_panels' },
-    { path: '/devices', icon: Cpu, label: 'devices' },
-    { path: '/analytics', icon: BarChart3, label: 'analytics' },
-    { path: '/battery', icon: BatteryCharging, label: 'battery' },
-    { path: '/weather', icon: CloudSun, label: 'weather' },
-    { path: '/reports', icon: FileText, label: 'reports' },
-    { path: '/notifications', icon: Bell, label: 'notifications' },
-    { path: '/security', icon: ShieldCheck, label: 'security' },
-    { path: '/automation', icon: Zap, label: 'automation' },
-    { path: '/users', icon: Users, label: 'users' },
-    { path: '/settings', icon: Settings, label: 'settings' },
-    { path: '/support', icon: LifeBuoy, label: 'support' },
+    { path: '/app', icon: LayoutDashboard, label: 'dashboard' },
+    { path: '/app/panels', icon: Sun, label: 'solar_panels' },
+    { path: '/app/devices', icon: Cpu, label: 'devices' },
+    { path: '/app/analytics', icon: BarChart3, label: 'analytics' },
+    { path: '/app/battery', icon: BatteryCharging, label: 'battery' },
+    { path: '/app/weather', icon: CloudSun, label: 'weather' },
+    { path: '/app/reports', icon: FileText, label: 'reports' },
+    { path: '/app/notifications', icon: Bell, label: 'notifications' },
+    { path: '/app/security', icon: ShieldCheck, label: 'security' },
+    { path: '/app/automation', icon: Zap, label: 'automation' },
+    { path: '/app/users', icon: Users, label: 'users' },
+    { path: '/app/settings', icon: Settings, label: 'settings' },
+    { path: '/app/support', icon: LifeBuoy, label: 'support' },
 ];
 
 const Sidebar = () => {
