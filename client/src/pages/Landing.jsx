@@ -1,17 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import {
-    Download,
-    Github,
-    Zap,
-    Shield,
-    BarChart3,
-    Cpu,
-    Sun,
-    LayoutDashboard,
-    ArrowRight,
-    CheckCircle2
-} from 'lucide-react';
+// Mock icons
+const Download = () => null;
+const Github = () => null;
+const Zap = () => null;
+const ShieldCheck = () => null;
+const BarChart3 = () => null;
+const Cpu = () => null;
+const Sun = () => null;
+const LayoutDashboard = () => null;
+const ArrowRight = () => null;
+const Check = () => null;
 import { Link } from 'react-router-dom';
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
@@ -116,7 +115,7 @@ const Landing = () => {
                             description="Harorat yoki quyosh nuriga qarab ishlaydigan mantiqiy ssenariylar."
                         />
                         <FeatureCard
-                            icon={Shield}
+                            icon={ShieldCheck}
                             title="Yuqori Himoya"
                             description="AI-fayervol va 2FA orqali tizimni ruxsatsiz kirishdan saqlang."
                         />

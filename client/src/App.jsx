@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/layout/Layout';
-import Landing from './pages/Landing'; // Import Landing
 import Dashboard from './pages/Dashboard';
 import SolarPanels from './pages/SolarPanels';
 import Battery from './pages/Battery';
@@ -33,14 +32,9 @@ function App() {
           <RealTimeDataProvider>
             <Router>
               <Routes>
-                {/* Landing Page is now the root */}
-                <Route path="/" element={<Landing />} />
-
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-
-                {/* All app routes wrapped in Layout */}
-                <Route path="/app/*" element={
+                <Route path="/*" element={
                   <Layout>
                     <Routes>
                       <Route path="/" element={<Dashboard />} />
@@ -56,27 +50,10 @@ function App() {
                       <Route path="/users" element={<Users />} />
                       <Route path="/support" element={<Support />} />
                       <Route path="/settings" element={<Settings />} />
-                      <Route path="*" element={<Navigate to="/app" replace />} />
+                      <Route path="*" element={<Navigate to="/" replace />} />
                     </Routes>
                   </Layout>
                 } />
-
-                {/* Legacy redirect for old paths or deep links */}
-                <Route path="/dashboard" element={<Navigate to="/app" replace />} />
-                <Route path="/panels" element={<Navigate to="/app/panels" replace />} />
-                <Route path="/analytics" element={<Navigate to="/app/analytics" replace />} />
-                <Route path="/battery" element={<Navigate to="/app/battery" replace />} />
-                <Route path="/weather" element={<Navigate to="/app/weather" replace />} />
-                <Route path="/devices" element={<Navigate to="/app/devices" replace />} />
-                <Route path="/reports" element={<Navigate to="/app/reports" replace />} />
-                <Route path="/notifications" element={<Navigate to="/app/notifications" replace />} />
-                <Route path="/security" element={<Navigate to="/app/security" replace />} />
-                <Route path="/automation" element={<Navigate to="/app/automation" replace />} />
-                <Route path="/users" element={<Navigate to="/app/users" replace />} />
-                <Route path="/support" element={<Navigate to="/app/support" replace />} />
-                <Route path="/settings" element={<Navigate to="/app/settings" replace />} />
-
-                <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </Router>
           </RealTimeDataProvider>
