@@ -1,0 +1,100 @@
+========================================================================
+       LOYYIHA HISOBOTI: "SOLAR_OS" QUYOSH ENERGIYASI NAZORAT TIZIMI
+========================================================================
+
+1. LOYIHA HAQIDA UMUMIY MA'LUMOT
+------------------------------------------------------------------------
+Ushbu dasturiy ta'minot qayta tiklanuvchi energiya manbalarini (quyosh 
+panellari) boshqarish va intellektual monitoring qilish uchun yaratilgan. 
+Dasturning asosiy maqsadi - foydalanuvchiga energiyadan oqilona foydalanish, 
+yo'qotishlarni kamaytirish va tizim xavfsizligini ta'minlash imkonini beruvchi 
+yagona markazlashtirilgan interfeysni taqdim etish.
+
+2. DASTURNING TUZILISHI (13 TA ASOSIY BO'LIM)
+------------------------------------------------------------------------
+Dastur jami 13 ta interaktiv bo'limdan iborat bo'lib, har biri o'ziga xos 
+muhim funksiyalarni bajaradi:
+
+1) TAHLIL TIZIMI (DASHBOARD):
+   - Markaziy bo'lim. Joriy ishlab chiqarish kVt, iste'mol va batareya 
+     foizi kabi muhim ko'rsatkichlarni real vaqtda ko'rsatadi.
+   - Chart.js asosidagi dinamik grafik tizimning kunlik, haftalik va 
+     oylik faoliyatini vizualizatsiya qiladi.
+
+2) PANELLAR SETI (SOLAR PANELS):
+   - Har bir quyosh panelini alohida (Tugunlar ko'rinishida) monitoring 
+     qilish.
+   - Diagnostika funksiyasi orqali har bir panelning samaradorligi (%), 
+     harorati va kuchlanishini (V) tekshirish imkonini beradi.
+
+3) QURILMALAR MARKAZI (DEVICES):
+   - Tizimga ulangan barcha iste'molchilar (EV zaryadlovchi, sovutish 
+     tizimi, serverlar) nazorati.
+   - Masofadan yoqish/o'chirish va real vaqtda kVt sarfini kuzatish.
+
+4) ENERGIYA TAHLILI (ANALYTICS):
+   - Energiya oqimining chuqur statistikasi.
+   - Ishlab chiqarish va sarfiyat o'rtasidagi balansni tahlil qilish.
+
+5) QUVVAT BAZASI (BATTERY):
+   - Akkumulyatorlar holati. Ularning zaryad darajasi, yaroqlilik muddati 
+     va joriy haroratini kuzatish.
+
+6) OB-HAVO MONITORINGI (WEATHER):
+   - Quyosh nuri intensivligi va yaqin kunlardagi meteo-bashoratlar.
+   - Havoga qarab tizim samaradorligini avtomatik baholash.
+
+7) HISOBOTLAR MARKAZI (REPORTS):
+   - Tizim log-fayllarini generatsiya qilish.
+   - Statistik ma'lumotlarni .txt yoki boshqa formatlarda yuklab olish 
+     imkoniyati.
+
+8) BILDIRISHNOMALAR (NOTIFICATIONS):
+   - Tizimdagi o'zgarishlar, xavflar va yangiliklar haqida real vaqtda 
+     xabardor qilish (Info, Warning, Error turidagi xabarlar).
+
+9) XAVFSIZLIK (SECURITY):
+   - Tizim himoyasi. 2FA (Ikki bosqichli autentifikatsiya), IP-fayervol 
+     va biometrik kirish sozlamalari.
+
+10) AVTOMATIKA (AUTOMATION):
+    - Inson aralashuvisiz ishlaydigan mantiqiy stsenariylar yaratish 
+      (masalan: "Quyosh botsa, chiroqlarni yoq").
+
+11) FOYDALANUVCHILAR (USERS):
+    - Tizimga kirish huquqi berilgan xodimlar yoki oila a'zolari ro'yxati.
+    - Ularga turli darajadagi (Admin, Operator) huquqlarni berish.
+
+12) YORDAM MARKAZI (SUPPORT):
+    - Texnik ko'mak xizmati bilan aloqa.
+    - To'g'ridan-to'g'ri murojaat yuborish formasi.
+
+13) SOZLAMALAR (SETTINGS):
+    - Interfeysni shaxsiylashtirish: Til (UZ, EN, RU), Shrift hajmi, 
+      Masshtab va Mavzu (Dark/Light/Neon) tanlash.
+
+3. TEXNIK AMALGA OSHIRILISH (TEKNOLOGIYALAR)
+------------------------------------------------------------------------
+- Front-end: React.js (Vite), Tailwind CSS (Dizayn), Framer Motion (Animatsiya).
+- Visualizatsiya: Chart.js (Grafiklar).
+- Lokalizatsiya: i18next (3 xil til).
+- Data: Local State Management va Context API (Real-time effektlar uchun).
+- Platforma: Vercel Cloud (Veb versiya) va C# Compiler (.exe versiya).
+
+4. DIZAYN FALSAFASI
+------------------------------------------------------------------------
+Loyihada "Bauhaus Neo-Brutalist" dizayn yo'nalishi tanlangan. Bu yo'nalish 
+uchun qalin qora konturlar, yuqori kontrastli sariq va yashil ranglar hamda 
+geometrik aniqlik xosdir. Bu foydalanuvchiga murakkab ma'lumotlarni oson 
+o'qishga yordam beradi.
+
+5. XULOSA
+------------------------------------------------------------------------
+"SOLAR_OS" - bu shunchaki veb-sayt emas, balki real vaqtda ishlovchi to'liq 
+ekosistema hisoblanadi. U veb, mobil va desktop (.exe) platformalarida 
+birdek mukammal ishlaydi.
+
+Tuzuvchi: Antigravity AI
+Sana: 17.05.2026
+------------------------------------------------------------------------
+========================================================================
