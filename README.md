@@ -1,39 +1,62 @@
-# Solar_OS | AI Powered Solar Planet Management System
+# SOLAR_OS: Quyosh Panellari Nazorati Tizimi 🚀
 
-Professional Neo-Brutalist dashboard for real-time solar array monitoring and control.
+**SOLAR_OS** — bu quyosh energiyasi va aqlli uy qurilmalarini boshqarish uchun mo'ljallangan zamonaviy, interaktiv va yuqori texnologiyali boshqaruv paneli (Dashboard).
 
-## Tech Stack
--   **Frontend**: React.js, Vite, TailwindCSS (Bauhaus Theme), Chart.js, Framer Motion, i18next.
--   **Backend**: Node.js, Express, Socket.io (Real-time Vitals), Morgan, Helmet.
--   **Database**: MySQL (Schema included).
+![Loyiha Ko'rinishi](https://client-coral-one-93.vercel.app/og-image.png) *(Eslatma: Bu yerda loyihangizning screenshotini joylashtirishingiz mumkin)*
 
-## Key Features
--   **Neo-Brutalist Design**: High contrast, bold geometry, and raw aesthetics inspired by Bauhaus.
--   **Real-time Monitoring**: Live status of 48 panels, battery levels, and grid output.
--   **Dynamic Theme & Scale**: Light, Dark, and Neon modes; adjustable font sizes and interface scaling (80% - 150%).
--   **Multi-language Support**: Uzbek (default), English, and Russian.
--   **Interactive Maps**: Topological mapping of solar nodes.
--   **Energy Analytics**: Production vs Consumption charts.
+## 📦 Loyiha Haqida
+Ushbu tizim foydalanuvchilarga quyosh panellari samaradorligini real vaqt rejimida kuzatish, energiya sarfini tahlil qilish va aqlli qurilmalarni masofadan boshqarish imkonini beradi. Dizayn **Bauhaus Neo-Brutalist** uslubida yaratilgan bo'lib, u qalin chiziqlar, yuqori kontrast va qulay interfeysni ta'minlaydi.
 
-## Installation
+## ✨ Asosiy Imkoniyatlar
+- 📊 **Real-vaqt Tahlili**: Energiya ishlab chiqarish va iste'mol grafiklari (Chart.js orqali).
+- ☀️ **Panel Diagnostikasi**: Har bir panelning holati va samaradorligini kuzatish.
+- 🔌 **Qurilmalar Boshqaruvi**: Rele va tugunlarni masofadan yoqish/o'chirish.
+- 🤖 **Avtomatlashtirish**: Quyosh nuriga yoki vaqtga qarab ishlaydigan "Smart" stsenariylar.
+- 🛡️ **Xavfsizlik**: 2FA autentifikatsiya va tarmoq himoyasi.
+- 🌍 **Ko'p tilli tizim**: O'zbek, Ingliz va Rus tillari to'liq qo'llab-quvvatlanadi.
+- 🖥️ **Desktop Ilova**: Kompyuterda ishlatish uchun tayyor `.exe` versiyasi.
 
-### Client
-```bash
-cd client
-npm install
-npm run dev
-```
+## 🛠 Texnologiyalar
+### Frontend:
+- **React (Vite)** — Tezkor interfeys.
+- **Tailwind CSS** — Zamonaviy stilizatsiya.
+- **Framer Motion** — Silliq animatsiyalar.
+- **React Chartjs 2** — Ma'lumotlar vizualizatsiyasi.
+- **i18next** — Lokalizatsiya.
 
-### Server
-```bash
-cd server
-npm install
-npm run dev
-```
+### Backend & Baza:
+- **Node.js / Express** — API server.
+- **MySQL** — Ma'lumotlarni saqlash.
 
-## Database Setup
-1. Use the `database/schema.sql` file to create your MySQL database.
-2. Update the `.env` file in the server directory with your credentials.
+## 🚀 O'rnatish va Ishga Tushirish
 
-## License
-Solar_OS Enterprise © 2024
+1. **Repozitoriyani yuklab oling:**
+   ```bash
+   git clone https://github.com/diyorrr000/quyoshpanel.git
+   cd quyoshpanel
+   ```
+
+2. **Frontendni sozlang:**
+   ```bash
+   cd client
+   npm install
+   npm run dev
+   ```
+
+3. **Serverni sozlang:**
+   ```bash
+   cd ../server
+   npm install
+   node index.js
+   ```
+
+## 🌐 Onlayn Ko'rish
+Loyiha Vercel platformasiga yuklangan:
+[https://client-coral-one-93.vercel.app/](https://client-coral-one-93.vercel.app/)
+
+## 💻 Desktop Versiya
+Ishchi stolda joylashgan `Solar_Control_System.exe` fayli orqali dasturni brauzersiz, mustaqil ilova sifatida ishlatishingiz mumkin.
+
+---
+**Tuzuvchi:** [diyorrr000](https://github.com/diyorrr000)
+**Yaratilgan sana:** 2026-yil, May
