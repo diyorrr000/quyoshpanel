@@ -55,8 +55,8 @@ const Security = () => {
         <div className="space-y-12">
             <header className="flex justify-between items-end">
                 <div>
-                    <h2 className="font-display font-black text-6xl uppercase tracking-tighter leading-none text-primary">
-                        XAVFSIZLIK<span className="text-secondary">.him</span>
+                    <h2 className="font-display font-black text-7xl uppercase tracking-tighter leading-none text-primary">
+                        XAVFSIZLIK
                     </h2>
                     <p className="text-xs font-bold uppercase opacity-60 mt-2">Kriptografik himoya va kirish nazorati sozlamalari</p>
                 </div>

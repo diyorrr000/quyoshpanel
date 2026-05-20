@@ -8,11 +8,17 @@ const Reports = () => {
     const { showNotification } = useNotification();
     const [downloading, setDownloading] = useState(null);
 
+    const formatDate = (daysAgo) => {
+        const d = new Date();
+        d.setDate(d.getDate() - daysAgo);
+        return d.toISOString().split('T')[0];
+    };
+
     const reportList = [
-        { id: 'REP-001', name: "Oylik Energiya Hisoboti - May", type: "Tizim", date: "2024-05-15", size: "2.4 MB" },
-        { id: 'REP-002', name: "Panel Samaradorligi Tahlili", type: "Texnik", date: "2024-05-14", size: "1.8 MB" },
-        { id: 'REP-003', name: "Xarajatlar va Tejamkorlik", type: "Moliyaviy", date: "2024-05-10", size: "0.9 MB" },
-        { id: 'REP-004', name: "Xizmat Ko'rsatish Tarixi", type: "Logistika", date: "2024-05-01", size: "3.1 MB" },
+        { id: 'REP-001', name: "Oylik Energiya Hisoboti - " + new Date().toLocaleString('uz-UZ', { month: 'long' }), type: "Tizim", date: formatDate(2), size: "2.4 MB" },
+        { id: 'REP-002', name: "Panel Samaradorligi Tahlili", type: "Texnik", date: formatDate(4), size: "1.8 MB" },
+        { id: 'REP-003', name: "Xarajatlar va Tejamkorlik", type: "Moliyaviy", date: formatDate(7), size: "0.9 MB" },
+        { id: 'REP-004', name: "Xizmat Ko'rsatish Tarixi", type: "Logistika", date: formatDate(12), size: "3.1 MB" },
     ];
 
     const generateRealDownload = (name) => {
@@ -51,8 +57,8 @@ const Reports = () => {
         <div className="space-y-12">
             <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
                 <div>
-                    <h2 className="font-display font-black text-6xl uppercase tracking-tighter leading-none text-primary">
-                        HISOBOT_MARKAZI<span className="text-tertiary">.log</span>
+                    <h2 className="font-display font-black text-7xl uppercase tracking-tighter leading-none text-primary">
+                        HISOBOT MARKAZI
                     </h2>
                     <p className="text-xs font-bold uppercase opacity-60 mt-2">Energiya ishlab chiqarish va tizim jurnallari hisoboti</p>
                 </div>

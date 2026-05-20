@@ -24,8 +24,8 @@ const Support = () => {
     return (
         <div className="space-y-12">
             <header>
-                <h2 className="font-display font-black text-6xl uppercase tracking-tighter leading-none text-primary">
-                    YORDAM_MARKAZI<span className="text-secondary">.sys</span>
+                <h2 className="font-display font-black text-7xl uppercase tracking-tighter leading-none text-primary">
+                    YORDAM MARKAZI
                 </h2>
                 <p className="text-xs font-bold uppercase opacity-60 mt-2">Texnik ko'mak va tizim bo'yicha murojaatlar</p>
             </header>

@@ -11,6 +11,12 @@ const TopBar = () => {
     const { logout, user } = useAuth();
     const { showNotification } = useNotification();
     const [showProfileMenu, setShowProfileMenu] = useState(false);
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    React.useEffect(() => {
+        const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+        return () => clearInterval(timer);
+    }, []);
 
     const handleLogout = () => {
         showNotification("Tizimdan muvaffaqiyatli chiqildi", "info");
@@ -19,7 +25,13 @@ const TopBar = () => {
 
     return (
         <header className="h-20 bg-surface border-b-4 border-primary flex items-center justify-between px-8 sticky top-0 z-40 transition-colors duration-300">
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-12">
+                <div className="flex flex-col">
+                    <span className="text-[10px] font-black uppercase opacity-40 leading-none mb-1">Jonli Vaqt</span>
+                    <span className="font-display font-black text-xl italic tracking-tighter text-primary">
+                        {currentTime.toLocaleTimeString('uz-UZ', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                    </span>
+                </div>
                 <div className="relative group">
                     <input
                         type="text"

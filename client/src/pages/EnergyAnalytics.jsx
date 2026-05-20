@@ -66,8 +66,8 @@ const EnergyAnalytics = () => {
         <div className="space-y-12">
             <header className="flex justify-between items-end">
                 <div>
-                    <h2 className="font-display font-black text-6xl uppercase tracking-tighter leading-none text-primary">
-                        ANALYTICS_CORE<span className="text-tertiary">.log</span>
+                    <h2 className="font-display font-black text-7xl uppercase tracking-tighter leading-none text-primary">
+                        ENERGIYA TAHLILI
                     </h2>
                     <p className="text-xs font-bold uppercase opacity-60 mt-2">Energiya ishlab chiqarish va iste'mol statistikasi</p>
                 </div>
@@ -86,7 +86,13 @@ const EnergyAnalytics = () => {
                         </h3>
                         <div className="flex items-center gap-2 text-xs font-black bg-primary-container px-3 py-1 border-2 border-primary">
                             <Calendar size={14} />
-                            <span>MAY 10 - 16, 2024</span>
+                            <span>{(() => {
+                                const end = new Date();
+                                const start = new Date();
+                                start.setDate(end.getDate() - 6);
+                                const format = (d) => d.toLocaleString('uz-UZ', { month: 'short', day: 'numeric' }).toUpperCase();
+                                return `${format(start)} - ${format(end)}, ${end.getFullYear()}`;
+                            })()}</span>
                         </div>
                     </div>
                     <div className="h-[380px]">

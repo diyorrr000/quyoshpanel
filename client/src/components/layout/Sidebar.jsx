@@ -50,7 +50,7 @@ const Sidebar = () => {
             <div>
                 <div className="px-6 mb-8 flex justify-between items-center">
                     <div>
-                        <h1 className="font-headline font-black text-3xl italic tracking-tighter text-primary">SOLAR_OS</h1>
+                        <h1 className="font-headline font-black text-3xl italic tracking-tighter text-primary">SOLAR OS</h1>
                         <p className="font-headline font-bold text-[8px] uppercase opacity-40">Build v2.4.0-stable</p>
                     </div>
                     <div className="w-3 h-3 bg-neon-active border-2 border-primary animate-pulse"></div>

@@ -19,8 +19,8 @@ const Weather = () => {
         <div className="space-y-12">
             <header className="flex justify-between items-end">
                 <div>
-                    <h2 className="font-display font-black text-6xl uppercase tracking-tighter leading-none text-primary">
-                        METEO_GRID<span className="text-tertiary">.log</span>
+                    <h2 className="font-display font-black text-7xl uppercase tracking-tighter leading-none text-primary">
+                        METEO TAHLILI
                     </h2>
                     <p className="text-xs font-bold uppercase opacity-60 mt-2">Atmosfera holati va quyosh radiatsiyasi monitoringi</p>
                 </div>

@@ -20,8 +20,8 @@ const Settings = () => {
     return (
         <div className="space-y-12 max-w-4xl">
             <header>
-                <h2 className="font-display font-black text-6xl uppercase tracking-tighter leading-none text-primary">
-                    TIZIM_SOZLAMALARI<span className="text-tertiary">.cfg</span>
+                <h2 className="font-display font-black text-7xl uppercase tracking-tighter leading-none text-primary">
+                    TIZIM SOZLAMALARI
                 </h2>
                 <p className="text-xs font-bold uppercase opacity-60 mt-2">Interfeys va tizim afzalliklarini boshqarish</p>
             </header>

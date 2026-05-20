@@ -120,8 +120,8 @@ const Dashboard = () => {
         <div className="space-y-12">
             <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
                 <div>
-                    <h2 className="font-display font-black text-6xl uppercase tracking-tighter leading-none text-primary">
-                        TAHLIL_TIZIMI<span className="text-tertiary">.log</span>
+                    <h2 className="font-display font-black text-7xl uppercase tracking-tighter leading-none text-primary">
+                        TAHLIL TIZIMI
                     </h2>
                     <p className="text-xs font-bold uppercase opacity-60 mt-2">Real vaqt rejimida energiya monitoringi va tizim holati</p>
                 </div>

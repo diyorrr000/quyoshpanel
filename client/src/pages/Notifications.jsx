@@ -35,8 +35,8 @@ const Notifications = () => {
         <div className="space-y-12">
             <header className="flex justify-between items-end">
                 <div>
-                    <h2 className="font-display font-black text-6xl uppercase tracking-tighter leading-none text-primary">
-                        BILDIRISHNOMALAR<span className="text-tertiary">.xab</span>
+                    <h2 className="font-display font-black text-7xl uppercase tracking-tighter leading-none text-primary">
+                        BILDIRISHNOMALAR
                     </h2>
                     <p className="text-xs font-bold uppercase opacity-60 mt-2">Tizim bildirishnomalari va ogohlantirishlar xronologiyasi</p>
                 </div>
@@ -62,9 +62,9 @@ const Notifications = () => {
                                     className={`p-6 flex items-start gap-6 transition-colors ${n.read ? 'bg-surface opacity-80' : 'bg-primary-container'}`}
                                 >
                                     <div className={`p-4 border-2 border-primary ${n.type === 'info' ? 'bg-surface' :
-                                            n.type === 'success' ? 'bg-neon-active' :
-                                                n.type === 'warning' ? 'bg-tertiary text-primary' :
-                                                    'bg-secondary text-surface'
+                                        n.type === 'success' ? 'bg-neon-active' :
+                                            n.type === 'warning' ? 'bg-tertiary text-primary' :
+                                                'bg-secondary text-surface'
                                         }`}>
                                         {n.type === 'info' && <Info size={24} />}
                                         {n.type === 'success' && <Check size={24} />}
